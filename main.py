@@ -1,7 +1,8 @@
 from gpiozero import LED
 import time
 
-red_led = LED(17)
+red_led = LED(40)
+green_led = LED(38)
 
 if __name__ == "__main__":
   while True:
