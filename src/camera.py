@@ -2,7 +2,7 @@ from picamera import PiCamera
 import os
 
 camera = PiCamera()
-PATH = '../images/image.jpg'
+PATH = 'image.jpg'
 
 def take_picture():
     print(os.getcwd())
