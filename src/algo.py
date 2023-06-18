@@ -12,8 +12,6 @@ def predict_type():
     image.save(buffered, format="JPEG")
     base64_image = base64.b64encode(buffered.getvalue())
     
-    print(base64_image)
-    
     req = requests.post("https://junk-judge-web.vercel.app/api/predict", 
         json={
         "image_b64": base64_image.decode("utf-8")
@@ -21,4 +19,7 @@ def predict_type():
         "Content-Type": "application/json",
     })
     
-    print(req.json())
+    data = req.json()
+    prediction = data["result"][0]
+    
+    return prediction

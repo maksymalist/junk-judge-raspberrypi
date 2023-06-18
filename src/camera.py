@@ -5,5 +5,4 @@ camera = PiCamera()
 PATH = 'image.jpg'
 
 def take_picture():
-    print(os.getcwd())
     camera.capture(PATH)
