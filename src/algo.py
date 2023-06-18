@@ -1,8 +1,9 @@
 import requests
-from camera import PATH
 import base64
 from PIL import Image
 from io import BytesIO
+
+PATH = './images/image.jpg'
 
 def predict_type():
     
