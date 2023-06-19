@@ -2,3 +2,5 @@ gpiozero
 picamera
 requests
 pillow
+firebase-admin
+gradio_client
