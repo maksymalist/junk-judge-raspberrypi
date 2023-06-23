@@ -5,4 +5,5 @@ pillow
 firebase-admin
 gradio_client
 smbus
-RPi
+cryptography==2.8
+

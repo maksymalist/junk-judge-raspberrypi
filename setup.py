@@ -1,28 +1,43 @@
-# from src.camera import take_picture
-# from src.algo import predict_type
-# from src.camera import PATH
-# import os
 from utils.firebase import upload_file_to_firebase
 from utils.notion import create_notion_entry
 from utils.model import predict_type
 
+from src.lcd_display import LcdModule
+from src.stepper_motor import SMotorModule
+
+import drivers
+import time
+import sys
+
+import RPi.GPIO as GPIO
+
 if __name__ == "__main__":
-    # take_picture()
-    # if not os.path.exists(PATH):
-    #     print("No image found.")
-    #     exit(1)
 
-    # prediction = predict_type()
-    # print(prediction)
-    # Usage example
-    file_path = 'images/test.jpg'
-    prediction = predict_type(file_path)
-    key, file_size, file_type, file_name, file_url = upload_file_to_firebase(file_path, prediction)
+    GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BOARD)
 
-    print('File uploaded successfully.')
-    print('File Size:', file_size)
-    print('File Type:', file_type)
-    print('File Name:', file_name)
-    print('File URL:', file_url)
+    # file_path = 'images/test.jpg'
+    # prediction = predict_type(file_path)
+    # key, file_size, file_type, file_name, file_url = upload_file_to_firebase(file_path, prediction)
 
-    print(create_notion_entry(file_url, prediction, file_type, file_size, key))
+    # print('File uploaded successfully.')
+    # print('File Size:', file_size)
+    # print('File Type:', file_type)
+    # print('File Name:', file_name)
+    # print('File URL:', file_url)
+
+    # display = drivers.Lcd()
+    # lcd = LcdModule(display, prediction)
+    # lcd.display()
+
+    channels = (29,31,33,35)
+    wait_time = 0.002
+
+    motor = SMotorModule(channels, wait_time)
+    motor.setup()
+
+    ang = 520
+
+    motor.rotate_clockwise(ang)
+
+    #print(create_notion_entry(file_url, prediction, file_type, file_size, key))

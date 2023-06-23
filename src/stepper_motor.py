@@ -1,4 +1,4 @@
-import Rpi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import time
 
 class SMotorModule:
@@ -24,7 +24,6 @@ class SMotorModule:
   def rotate_counter_clockwise(self, angle):
 
     for _ in range(angle):
-      print('motor running anti-clockwise\n')
       GPIO.output(self.channels, (GPIO.HIGH,GPIO.LOW,GPIO.LOW,GPIO.HIGH))
       time.sleep(self.wait_time)
       GPIO.output(self.channels, (GPIO.LOW,GPIO.LOW,GPIO.HIGH,GPIO.HIGH))
