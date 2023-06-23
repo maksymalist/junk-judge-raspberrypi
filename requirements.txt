@@ -4,3 +4,5 @@ requests
 pillow
 firebase-admin
 gradio_client
+smbus
+RPi

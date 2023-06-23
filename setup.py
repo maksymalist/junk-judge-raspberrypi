@@ -4,14 +4,14 @@
 # import os
 from utils.firebase import upload_file_to_firebase
 from utils.notion import create_notion_entry
-from src.algo import predict_type
+from utils.model import predict_type
 
 if __name__ == "__main__":
     # take_picture()
     # if not os.path.exists(PATH):
     #     print("No image found.")
     #     exit(1)
-        
+
     # prediction = predict_type()
     # print(prediction)
     # Usage example
@@ -24,5 +24,5 @@ if __name__ == "__main__":
     print('File Type:', file_type)
     print('File Name:', file_name)
     print('File URL:', file_url)
-    
+
     print(create_notion_entry(file_url, prediction, file_type, file_size, key))
