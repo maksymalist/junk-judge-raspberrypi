@@ -5,7 +5,6 @@
 from utils.firebase import upload_file_to_firebase
 from utils.notion import create_notion_entry
 from src.algo import predict_type
-import time
 
 if __name__ == "__main__":
     # take_picture()
