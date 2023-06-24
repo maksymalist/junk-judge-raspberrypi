@@ -6,4 +6,6 @@ firebase-admin
 gradio_client
 smbus
 cryptography==2.8
+RPi.GPIO
+
 
