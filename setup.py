@@ -26,9 +26,9 @@ if __name__ == "__main__":
     # print('File Name:', file_name)
     # print('File URL:', file_url)
 
-    # display = drivers.Lcd()
-    # lcd = LcdModule(display, prediction)
-    # lcd.display()
+    screen = drivers.Lcd()
+    lcd = LcdModule(screen)
+    lcd.display("hello gigga")
 
     channels = (29,31,33,35)
     wait_time = 0.002
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     motor = SMotorModule(channels, wait_time)
     motor.setup()
 
-    ang = 520
+    ang = 5200
 
     motor.rotate_clockwise(ang)
 

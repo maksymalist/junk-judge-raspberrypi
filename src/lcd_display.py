@@ -4,10 +4,9 @@ import sys
 
 
 class LcdModule:
-  def __init__(self, lcd, string) -> None:
+  def __init__(self, lcd) -> None:
     self.screen = lcd
-    self.string = string
 
-  def display(self):
-    self.screen.lcd_display_string(self.string, 1)
+  def display(self, message):
+    self.screen.lcd_display_string(message, 1)
 
