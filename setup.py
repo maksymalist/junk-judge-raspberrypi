@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     screen = drivers.Lcd()
     lcd = LcdModule(screen)
-    lcd.display("hello gigga")
+    lcd.display("hello world")
 
     channels = (29,31,33,35)
     wait_time = 0.002
