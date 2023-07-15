@@ -36,7 +36,7 @@ if __name__ == "__main__":
     motor = SMotorModule(channels, wait_time)
     motor.setup()
 
-    ang = 5200
+    ang = 5000
 
     motor.rotate_clockwise(ang)
 
