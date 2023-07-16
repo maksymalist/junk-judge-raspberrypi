@@ -15,17 +15,8 @@ if __name__ == "__main__":
 
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BOARD)
-
-    # file_path = 'images/test.jpg'
-    # prediction = predict_type(file_path)
-    # key, file_size, file_type, file_name, file_url = upload_file_to_firebase(file_path, prediction)
-
-    # print('File uploaded successfully.')
-    # print('File Size:', file_size)
-    # print('File Type:', file_type)
-    # print('File Name:', file_name)
-    # print('File URL:', file_url)
-
+    
+    # on start
     screen = drivers.Lcd()
     lcd = LcdModule(screen)
     lcd.display("hello world")
@@ -39,5 +30,28 @@ if __name__ == "__main__":
     ang = 5000
 
     motor.rotate_clockwise(ang)
+    
+    # on update
+    
+    while True:
+        try:
+            # do something
+            pass
+        except KeyboardInterrupt:
+            GPIO.cleanup()
+            sys.exit()
 
+
+
+
+    # file_path = 'images/test.jpg'
+    # prediction = predict_type(file_path)
+    # key, file_size, file_type, file_name, file_url = upload_file_to_firebase(file_path, prediction)
+
+    # print('File uploaded successfully.')
+    # print('File Size:', file_size)
+    # print('File Type:', file_type)
+    # print('File Name:', file_name)
+    # print('File URL:', file_url)
+    
     #print(create_notion_entry(file_url, prediction, file_type, file_size, key))
