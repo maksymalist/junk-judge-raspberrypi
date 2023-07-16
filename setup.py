@@ -2,8 +2,8 @@ from utils.firebase import upload_file_to_firebase
 from utils.notion import create_notion_entry
 from utils.model import predict_type
 
-from src.lcd_display import LcdModule
-from src.stepper_motor import SMotorModule
+from utils.lcd_display import LcdModule
+from utils.stepper_motor import SMotorModule
 
 import drivers
 import time
