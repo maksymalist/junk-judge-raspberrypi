@@ -9,4 +9,7 @@ class LcdModule:
 
   def display(self, message):
     self.screen.lcd_display_string(message, 1)
+    
+  def clear(self):
+    self.screen.lcd_display_string("", 1)
 

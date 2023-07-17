@@ -24,8 +24,16 @@ class JunkJudge:
         self.led_green = led_green
 
     def init(self):
-        self.lcd.display("Initializing...")
+        
+        # clear lcd and leds
+        self.lcd.clear()
+        GPIO.setup(self.led_red, GPIO.OUT)
         GPIO.setup(self.led_green, GPIO.OUT)
+        
+        GPIO.output(self.led_red, GPIO.LOW)
+        GPIO.output(self.led_green, GPIO.LOW)
+        
+        self.lcd.display("Initializing...")
  
         for i in range(3):
             GPIO.output(self.led_green, GPIO.HIGH)
