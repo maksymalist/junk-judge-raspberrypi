@@ -42,6 +42,7 @@ class JunkJudge:
             time.sleep(1)
             
         self.state = State.IDLE
+        self.lcd.clear()
         self.lcd.display("Ready to go!")
         time.sleep(1)
         
