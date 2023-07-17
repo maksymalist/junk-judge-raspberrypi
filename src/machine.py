@@ -44,6 +44,7 @@ class JunkJudge:
         # time.sleep(1)
         
         # idle_mode(self.lcd, self.led_green)
+        self.motor.setup()
         self.motor.rotate_clockwise(100)
     
     def update(self):  
