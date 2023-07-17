@@ -27,18 +27,15 @@ class JunkJudge:
         
         # clear lcd and leds
         self.lcd.clear()
-        GPIO.setup(self.led_red, GPIO.OUT)
-        GPIO.setup(self.led_green, GPIO.OUT)
-        
-        GPIO.output(self.led_red, GPIO.LOW)
-        GPIO.output(self.led_green, GPIO.LOW)
+        self.led_green.off()
+        self.led_red.off()
         
         self.lcd.display("Initializing...")
  
         for i in range(3):
-            GPIO.output(self.led_green, GPIO.HIGH)
+            self.led_green.on()
             time.sleep(1)
-            GPIO.output(self.led_green, GPIO.LOW)
+            self.led_green.off()
             time.sleep(1)
             
         self.state = State.IDLE
