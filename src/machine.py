@@ -25,25 +25,25 @@ class JunkJudge:
 
     def init(self):
         
-        # clear lcd and leds
-        # self.lcd.clear()
-        # self.led_green.off()
-        # self.led_red.off()
+        #clear lcd and leds
+        self.lcd.clear()
+        self.led_green.off()
+        self.led_red.off()
         
-        # self.lcd.display("Initializing...")
+        self.lcd.display("Initializing...")
  
-        # for i in range(3):
-        #     self.led_green.on()
-        #     time.sleep(1)
-        #     self.led_green.off()
-        #     time.sleep(1)
+        for i in range(3):
+            self.led_green.on()
+            time.sleep(1)
+            self.led_green.off()
+            time.sleep(1)
             
-        # self.state = State.IDLE
-        # self.lcd.clear()
-        # self.lcd.display("Ready to go!")
-        # time.sleep(1)
+        self.state = State.IDLE
+        self.lcd.clear()
+        self.lcd.display("Ready to go!")
+        time.sleep(1)
         
-        # idle_mode(self.lcd, self.led_green)
+        idle_mode(self.lcd, self.led_green)
         self.motor.setup()
         self.motor.rotate_clockwise(10000)
     
