@@ -22,8 +22,8 @@ if __name__ == "__main__":
     lcd_module = LcdModule(screen)
     stepper_motor_module = SMotorModule((29,31,33,35), 0.002)
     
-    led_red = 20
-    led_green = 21
+    led_red = 38
+    led_green = 40 
     
     
     machine = JunkJudge(lcd_module, stepper_motor_module, camera_module, led_red, led_green)
