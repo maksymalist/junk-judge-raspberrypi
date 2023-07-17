@@ -3,7 +3,7 @@ from utils.led import LED
 from utils.button import Button
 import time
 
-def callback():
+def callback(channel):
     print("button pressed")
     led = LED(38)
     led.on()
