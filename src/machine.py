@@ -23,7 +23,11 @@ class JunkJudge:
 
     def init(self):
         self.lcd.display("Initializing...")
-        self.led_green.on()
+        GPIO.output(self.led_green, GPIO.HIGH)
+        time.sleep(1)
+        GPIO.output(self.led_green, GPIO.LOW)
+        self.state = State.IDLE
+        self.lcd.display("Ready to go!")
     
     def update(self):  
         while True:
