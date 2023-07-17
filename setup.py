@@ -1,45 +1,36 @@
-from utils.firebase import upload_file_to_firebase
-from utils.notion import create_notion_entry
-from utils.model import predict_type
-
+# from utils.firebase import upload_file_to_firebase
+# from utils.notion import create_notion_entry
+# from utils.model import predict_type
+from picamera import PiCamera
 from utils.lcd_display import LcdModule
 from utils.stepper_motor import SMotorModule
+from utils.camera import CameraModule
+from src.machine import JunkJudge
 
 import drivers
-import time
-import sys
-
 import RPi.GPIO as GPIO
+from gpiozero import LED
 
 if __name__ == "__main__":
 
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BOARD)
     
-    # on start
+    camera = PiCamera()
     screen = drivers.Lcd()
-    lcd = LcdModule(screen)
-    lcd.display("hello world")
-
-    channels = (29,31,33,35)
-    wait_time = 0.002
-
-    motor = SMotorModule(channels, wait_time)
-    motor.setup()
-
-    ang = 5000
-
-    motor.rotate_clockwise(ang)
     
-    # on update
+    camera_module = CameraModule(camera, (500, 500), 50)
+    lcd_module = LcdModule(screen)
+    stepper_motor_module = SMotorModule((29,31,33,35), 0.002)
     
-    while True:
-        try:
-            # do something
-            pass
-        except KeyboardInterrupt:
-            GPIO.cleanup()
-            sys.exit()
+    led_red = LED(20)
+    led_green = LED(21)
+    
+    
+    machine = JunkJudge(lcd_module, stepper_motor_module, camera_module, led_red, led_green)
+    
+    machine.init()
+
 
 
 
@@ -55,3 +46,7 @@ if __name__ == "__main__":
     # print('File URL:', file_url)
     
     #print(create_notion_entry(file_url, prediction, file_type, file_size, key))
+
+    
+    # on start
+    

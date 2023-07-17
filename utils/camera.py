@@ -1,7 +1,4 @@
-from picamera import PiCamera
 from PIL import Image
-
-camera = PiCamera()
 
 
 class CameraModule:

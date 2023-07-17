@@ -1,5 +1,3 @@
-from utils.lcd_display import LcdModule
-
-
-def check_if_closed():
-    pass
+def idle_mode(lcd):
+    lcd.display("insert junk")
+    
