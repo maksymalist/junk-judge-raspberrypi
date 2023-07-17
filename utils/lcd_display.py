@@ -11,5 +11,5 @@ class LcdModule:
     self.screen.lcd_display_string(message, 1)
     
   def clear(self):
-    self.screen.lcd_display_string("", 1)
+    self.screen.lcd_clear()
 
