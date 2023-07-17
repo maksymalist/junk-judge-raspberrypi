@@ -4,6 +4,7 @@ from utils.button import Button
 import time
 
 def callback():
+    print("button pressed")
     led = LED(38)
     led.on()
     time.sleep(1)
@@ -17,6 +18,6 @@ def idle_mode(lcd, led_green):
     led_green.on()
     
     button = Button(22)
-    print("button pressed")
     button.press_event(callback)
+    input("Press Enter to continue...")
     
