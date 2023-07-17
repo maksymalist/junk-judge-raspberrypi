@@ -5,6 +5,8 @@ from utils.model import predict_type
 from utils.lcd_display import LcdModule
 from utils.stepper_motor import SMotorModule
 
+from src.lcd_sequence import idle_mode
+
 import drivers
 import time
 import sys
@@ -24,11 +26,18 @@ class JunkJudge:
     def init(self):
         self.lcd.display("Initializing...")
         GPIO.setup(self.led_green, GPIO.OUT)
-        GPIO.output(self.led_green, GPIO.HIGH)
-        time.sleep(1)
-        GPIO.output(self.led_green, GPIO.LOW)
+ 
+        for i in range(3):
+            GPIO.output(self.led_green, GPIO.HIGH)
+            time.sleep(1)
+            GPIO.output(self.led_green, GPIO.LOW)
+            time.sleep(1)
+            
         self.state = State.IDLE
         self.lcd.display("Ready to go!")
+        time.sleep(1)
+        
+        idle_mode(self.lcd, self.led_green)
     
     def update(self):  
         while True:
