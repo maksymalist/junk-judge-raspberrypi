@@ -15,30 +15,30 @@ import RPi.GPIO as GPIO
 
 if __name__ == "__main__":
 
-    GPIO.setwarnings(False)
-    GPIO.setmode(GPIO.BOARD)
-    
-    camera = PiCamera()
-    screen = drivers.Lcd()
-    
-    camera_module = CameraModule(camera, (500, 500), 50)
-    lcd_module = LcdModule(screen)
-    stepper_motor_module = SMotorModule((29,31,33,35), 0.002)
-    
-    led_red = LED(38)
-    led_green = LED(40)
-    
-    trapdoor = Button(22)
-    
-    machine = JunkJudge(lcd_module, stepper_motor_module, camera_module, led_red, led_green, trapdoor)
-    machine.on_init()
-    
-    while True:
-        try:
-            machine.on_update()
-        except KeyboardInterrupt:
-            GPIO.cleanup()
-            sys.exit()
+    try:
+        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BOARD)
+        
+        camera = PiCamera()
+        screen = drivers.Lcd()
+        
+        camera_module = CameraModule(camera, (500, 500), 50)
+        lcd_module = LcdModule(screen)
+        stepper_motor_module = SMotorModule((29,31,33,35), 0.002)
+        
+        led_red = LED(38)
+        led_green = LED(40)
+        
+        trapdoor = Button(22)
+        
+        machine = JunkJudge(lcd_module, stepper_motor_module, camera_module, led_red, led_green, trapdoor)
+        machine.on_init()
+        
+
+    except KeyboardInterrupt:
+        GPIO.cleanup()
+        machine.clear_all()
+        sys.exit()
 
 
 
