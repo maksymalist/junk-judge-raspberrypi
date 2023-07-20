@@ -67,5 +67,13 @@ class JunkJudge:
     
     def toggle_open(self, channel):
         
-        print("isopen", self.is_open)
+        if self.state != State.IDLE:
+            return 
+        
+        if self.is_open:
+            self.clear_all()
+            active_mode(self.lcd, self.led_red)
+            self.state = State.ACTIVE
+            
+        self.is_open = not self.is_open
 
