@@ -25,9 +25,6 @@ class JunkJudge:
         self.trapdoor = trapdoor
         self.is_open = False
         self.debug = False
-        
-    def debug(self, debug):
-        self.debug = debug
 
     def on_init(self):
         

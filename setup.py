@@ -31,7 +31,7 @@ if __name__ == "__main__":
     trapdoor = Button(22)
     
     machine = JunkJudge(lcd_module, stepper_motor_module, camera_module, led_red, led_green, trapdoor)
-    machine.debug(True)
+    machine.debug = True
     machine.on_init()
     
     while True:
