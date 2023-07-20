@@ -81,11 +81,11 @@ class LcdModule:
   def display(self, message):
     self.screen.lcd_display_string(message, 1)
     
-  def display_progress(self, progress):
+  def display_progress(self, progress, message):
 
     bar_repr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     # Remember that your sentences can only be 16 characters long!
-    self.screen.lcd_display_string("Battery charge:", 1)
+    self.screen.lcd_display_string(message, 1)
 
     # Render charge bar:
     bar_string = ""
