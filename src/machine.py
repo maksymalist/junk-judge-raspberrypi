@@ -71,10 +71,10 @@ class JunkJudge:
         if self.state != State.IDLE:
             return 
         
-        self.is_open = not self.is_open
-        
         if self.is_open:
             self.clear_all()
             active_mode(self.lcd, self.led_red)
             self.state = State.ACTIVE
+            
+        self.is_open = not self.is_open
 
