@@ -82,12 +82,9 @@ class LcdModule:
     self.screen.lcd_display_string(message, 1)
     
   def display_progress(self, progress):
-    MIN_CHARGE = 0
-    MAX_CHARGE = 100
 
     # Main body of code
-    charge = 0
-    charge_delta = 5
+    charge = 25
     bar_repr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     # Remember that your sentences can only be 16 characters long!
     self.screen.lcd_display_string("Battery charge:", 1)
@@ -122,9 +119,6 @@ class LcdModule:
 
     # Print the string to display:
     self.screen.lcd_display_extended_string(bar_string + " {0}% ".format(charge), 2)
-
-    # Update the charge and recalculate bar_repr
-    charge += charge_delta
       
     for i in range(10):
         if charge >= ((i + 1) * 10):
