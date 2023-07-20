@@ -81,7 +81,7 @@ class LcdModule:
   def display(self, message):
     self.screen.lcd_display_string(message, 1)
     
-  def display_progress(self, progress):
+  def display_progress(self):
     # Remember that your sentences can only be 16 characters long!
     self.screen.lcd_display_string("Battery progress:", 1)
     progress = 0
