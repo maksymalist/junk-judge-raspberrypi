@@ -28,7 +28,6 @@ class JunkJudge:
         
     def debug(self, debug):
         self.debug = debug
-        return self
 
     def on_init(self):
         
