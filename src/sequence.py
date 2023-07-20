@@ -28,29 +28,29 @@ def idle_mode(lcd, led_green):
 def active_mode(lcd, led_red):
     led_red.on()
     
-    # step 1: take picture of junk
-    lcd.display_progress(0, "Taking picture...")
-    lcd.clear()
-    time.sleep(2)
+    steps = [
+        {
+            "message": "Taking picture...",
+            "progress": 0,
+        },
+        {
+            "message": "Identifying type...",
+            "progress": 25,
+        },
+        {
+            "message": "Sorting junk...",
+            "progress": 50,
+        },
+        {
+            "message": "Sorting junk...",
+            "progress": 75,
+        },
+        {
+            "message": "Done !",
+            "progress": 100,
+        }
+    ]
     
-    # step 2: predict type of junk
-    lcd.display_progress(25, "identifying type...")
-    lcd.clear()
-    time.sleep(2)
-    
-    # step 3: upload to firebase
-    lcd.display_progress(50, "Sorting junk...")
-    lcd.clear()
-    time.sleep(2)
-    
-    # step 4: sort junk
-    lcd.display_progress(75, "Sorting junk...")
-    lcd.clear()
-    time.sleep(2)
-    
-    # step 5: done
-    lcd.display_progress(100, "Done !")
-    lcd.clear()
-    time.sleep(2)
+    lcd.display_progress(steps)
     
     
