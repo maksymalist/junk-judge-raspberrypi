@@ -12,7 +12,7 @@ class LcdModule:
   def setup_custom_characters(self):
     
     # Create object with custom characters data
-    cc = drivers.CustomCharacters(self.display)
+    cc = drivers.CustomCharacters(self.screen)
 
     # Redefine the default characters that will be used to create process bar:
     # Left full character. Code {0x00}.
@@ -122,14 +122,6 @@ class LcdModule:
 
     # Print the string to display:
     self.screen.lcd_display_extended_string(bar_string + " {0}% ".format(progress), 2)
-
-    # # Update the progress and recalculate bar_repr
-    # progress += progress_delta
-    # if (progress >= self.MAX_PROGRESS) or (progress <= self.MIN_PROGRESS):
-    #     progress_delta = -1 * progress_delta          
-
-    # # Wait for some time
-    # time.sleep(1) 
     
   def clear(self):
     self.screen.lcd_clear()

@@ -1,128 +1,61 @@
-#! /usr/bin/env python
+# from utils.firebase import upload_file_to_firebase
+# from utils.notion import create_notion_entry
+# from utils.model import predict_type
+from picamera import PiCamera
+from utils.lcd_display import LcdModule
+from utils.stepper_motor import SMotorModule
+from utils.camera import CameraModule
+from utils.led import LED
+from utils.button import Button
+from src.machine import JunkJudge
 
-# Programm showing anumated progress bar using custom characters.
-# Demo program for the I2C 16x2 Display
-# Created by Dmitry Safonov
-
-# Import necessary libraries for communication and display use
 import drivers
-from time import sleep
+import sys
+import RPi.GPIO as GPIO
 
-# Load the driver and set it to "display"
-# If you use something from the driver library use the "display." prefix first
-display = drivers.Lcd()
+if __name__ == "__main__":
 
-# Create object with custom characters data
-cc = drivers.CustomCharacters(display)
+    GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BOARD)
+    
+    camera = PiCamera()
+    screen = drivers.Lcd()
+    
+    camera_module = CameraModule(camera, (500, 500), 50)
+    lcd_module = LcdModule(screen)
+    stepper_motor_module = SMotorModule((29,31,33,35), 0.002)
+    
+    led_red = LED(38)
+    led_green = LED(40)
+    
+    trapdoor = Button(22)
+    
+    machine = JunkJudge(lcd_module, stepper_motor_module, camera_module, led_red, led_green, trapdoor)
+    machine.on_init()
+    
+    while True:
+        try:
+            machine.on_update()
+        except KeyboardInterrupt:
+            GPIO.cleanup()
+            sys.exit()
 
-# Redefine the default characters that will be used to create process bar:
-# Left full character. Code {0x00}.
-cc.char_1_data = ["01111",
-                  "11000",
-                  "10011",
-                  "10111",
-                  "10111",
-                  "10011",
-                  "11000",
-                  "01111"]
 
-# Left empty character. Code {0x01}.
-cc.char_2_data = ["01111",
-                  "11000",
-                  "10000",
-                  "10000",
-                  "10000",
-                  "10000",
-                  "11000",
-                  "01111"]
 
-# Central full character. Code {0x02}.
-cc.char_3_data = ["11111",
-                  "00000",
-                  "11011",
-                  "11011",
-                  "11011",
-                  "11011",
-                  "00000",
-                  "11111"]
 
-# Central empty character. Code {0x03}.
-cc.char_4_data = ["11111",
-                  "00000",
-                  "00000",
-                  "00000",
-                  "00000",
-                  "00000",
-                  "00000",
-                  "11111"]
 
-# Right full character. Code {0x04}.
-cc.char_5_data = ["11110",
-                  "00011",
-                  "11001",
-                  "11101",
-                  "11101",
-                  "11001",
-                  "00011",
-                  "11110"]
+    # file_path = 'images/test.jpg'
+    # prediction = predict_type(file_path)
+    # key, file_size, file_type, file_name, file_url = upload_file_to_firebase(file_path, prediction)
 
-# Right empty character. Code {0x05}.
-cc.char_6_data = ["11110",
-                  "00011",
-                  "00001",
-                  "00001",
-                  "00001",
-                  "00001",
-                  "00011",
-                  "11110"]
+    # print('File uploaded successfully.')
+    # print('File Size:', file_size)
+    # print('File Type:', file_type)
+    # print('File Name:', file_name)
+    # print('File URL:', file_url)
+    
+    #print(create_notion_entry(file_url, prediction, file_type, file_size, key))
 
-# Load custom characters data to CG RAM:
-cc.load_custom_characters_data()
-
-MIN_CHARGE = 0
-MAX_CHARGE = 100
-
-# Main body of code
-charge = 100
-charge_delta = 5
-bar_repr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
-        # Remember that your sentences can only be 16 characters long!
-        display.lcd_display_string("Battery charge:", 1)
-
-        # Render charge bar:
-        bar_string = ""
-        for i in range(10):
-            if i == 0:
-                # Left character
-                if bar_repr[i] == 0:
-                    # Left empty character
-                    bar_string = bar_string + "{0x01}"
-                else:
-                    # Left full character 
-                    bar_string = bar_string + "{0x00}"
-            elif i == 9:
-                # Right characteråå
-                if bar_repr[i] == 0:
-                    # Right empty character
-                    bar_string = bar_string + "{0x05}"
-                else:
-                    # Right full character
-                    bar_string = bar_string + "{0x04}"
-            else:
-                # Central character
-                if bar_repr[i] == 0:
-                    # Central empty character
-                    bar_string = bar_string + "{0x03}"
-                else:
-                    # Central full character
-                    bar_string = bar_string + "{0x02}"
-
-        # Print the string to display:
-        display.lcd_display_extended_string(bar_string + " {0}% ".format(charge), 2)
-        
-        for i in range(10):
-            if charge >= ((i + 1) * 10):
-                bar_repr[i] = 1
-            else:
-                bar_repr[i] = 0
+    
+    # on start
+    
