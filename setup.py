@@ -83,7 +83,7 @@ MIN_CHARGE = 0
 MAX_CHARGE = 100
 
 # Main body of code
-charge = 0
+charge = 50
 charge_delta = 5
 bar_repr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
@@ -122,11 +122,6 @@ try:
 
         # Print the string to display:
         display.lcd_display_extended_string(bar_string + " {0}% ".format(charge), 2)
-
-        # Update the charge and recalculate bar_repr
-        charge += charge_delta
-        if (charge >= MAX_CHARGE) or (charge <= MIN_CHARGE):
-            charge_delta = -1 * charge_delta
         
         for i in range(10):
             if charge >= ((i + 1) * 10):
