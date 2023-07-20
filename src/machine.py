@@ -26,9 +26,11 @@ class JunkJudge:
         self.is_open = False
         self.debug = False
         
-    def debug(self, debug):
-        self.debug = debug
-        return self
+    def clear_all(self):
+        #clear lcd and leds
+        self.lcd.clear()
+        self.led_green.off()
+        self.led_red.off()
 
     def on_init(self):
         
@@ -37,11 +39,9 @@ class JunkJudge:
         ## Trapdoor ##
         self.trapdoor.press_event(self.toggle_open)
         
-        #clear lcd and leds
-        self.lcd.clear()
+        #setup lcd and leds
+        self.clear_all()
         self.lcd.setup_custom_characters()
-        self.led_green.off()
-        self.led_red.off()
         
         self.lcd.display("Initializing...")
  
@@ -55,6 +55,8 @@ class JunkJudge:
         self.lcd.clear()
         self.lcd.display("Ready to go!")
         time.sleep(1)
+        
+        self.clear_all()
         
         idle_mode(self.lcd, self.led_green)
         # self.motor.setup()
@@ -72,6 +74,7 @@ class JunkJudge:
         self.is_open = not self.is_open
         
         if self.is_open:
+            self.clear_all()
             active_mode(self.lcd, self.led_red)
             self.state = State.ACTIVE
 

@@ -21,7 +21,6 @@ def init_mode(machine, lcd, led_green):
         time.sleep(1)
 
 def idle_mode(lcd, led_green):
-    lcd.clear()
     lcd.display("Insert Junk")
     led_green.on()
     
