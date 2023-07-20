@@ -122,7 +122,7 @@ class LcdModule:
                   bar_string = bar_string + "{0x02}"
 
       # Print the string to display:
-      self.screens.lcd_display_extended_string(bar_string + " {0}% ".format(charge), 2)
+      self.screen.lcd_display_extended_string(bar_string + " {0}% ".format(charge), 2)
 
       # Update the charge and recalculate bar_repr
       charge += charge_delta
