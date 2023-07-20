@@ -81,11 +81,9 @@ class LcdModule:
   def display(self, message):
     self.screen.lcd_display_string(message, 1)
     
-  def display_progress(self):
+  def display_progress(self, progress):
     # Remember that your sentences can only be 16 characters long!
-    self.screen.lcd_display_string("Battery progress:", 1)
-    progress = 0
-    progress_delta = 5
+    self.screen.lcd_display_string("Judge progress:", 1)
     bar_repr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     # Render progress bar:
@@ -115,6 +113,12 @@ class LcdModule:
             else:
                 # Central full character
                 bar_string = bar_string + "{0x02}"
+                
+    for i in range(10):
+      if progress >= ((i + 1) * 10):
+          bar_repr[i] = 1
+      else:
+          bar_repr[i] = 0  
 
     # Print the string to display:
     self.screen.lcd_display_extended_string(bar_string + " {0}% ".format(progress), 2)
@@ -122,13 +126,7 @@ class LcdModule:
     # # Update the progress and recalculate bar_repr
     # progress += progress_delta
     # if (progress >= self.MAX_PROGRESS) or (progress <= self.MIN_PROGRESS):
-    #     progress_delta = -1 * progress_delta
-    
-    # for i in range(10):
-    #     if progress >= ((i + 1) * 10):
-    #         bar_repr[i] = 1
-    #     else:
-    #         bar_repr[i] = 0            
+    #     progress_delta = -1 * progress_delta          
 
     # # Wait for some time
     # time.sleep(1) 
