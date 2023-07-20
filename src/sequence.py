@@ -12,5 +12,5 @@ def idle_mode(lcd, led_green):
     
 def active_mode(lcd, led_red):
     lcd.clear()
-    lcd.display_progress()
+    lcd.display_progress(51)
     led_red.on()
