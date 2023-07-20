@@ -6,5 +6,11 @@ import time
 
 def idle_mode(lcd, led_green):
     lcd.clear()
-    lcd.display("insert junk")
+    lcd.display("Insert Junk")
     led_green.on()
+    
+    
+def active_mode(lcd, led_red):
+    lcd.clear()
+    lcd.display_progress()
+    led_red.on()

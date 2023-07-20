@@ -5,7 +5,7 @@ from utils.model import predict_type
 from utils.lcd_display import LcdModule
 from utils.stepper_motor import SMotorModule
 
-from src.sequence import idle_mode
+from src.sequence import idle_mode, active_mode
 
 import drivers
 import time
@@ -56,10 +56,12 @@ class JunkJudge:
     
     def on_update(self):  
         pass
+            
     
     def toggle_open(self, channel):
         self.is_open = not self.is_open
-        self.led_red.on()
-        time.sleep(0.05)
-        self.led_red.off()
+        
+        if self.is_open:
+            active_mode(self.lcd, self.led_red)
+            self.state = State.ACTIVE
 
