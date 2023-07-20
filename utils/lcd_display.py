@@ -128,7 +128,7 @@ class LcdModule:
                 bar_string = bar_string + "{0x02}"
                   
         # Print the string to display:
-      self.screen.lcd_display_extended_string(message, 1)
+      self.screen.lcd_display_string(message, 1)
       self.screen.lcd_display_extended_string(bar_string + " {0}% ".format(progress), 2)  
         
       time.sleep(2)       
