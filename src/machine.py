@@ -57,7 +57,7 @@ class JunkJudge:
     def on_update(self):  
         pass
     
-    def toggle_open(self):
+    def toggle_open(self, channel):
         self.is_open = not self.is_open
         self.led_red.on()
         time.sleep(0.05)
