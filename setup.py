@@ -83,12 +83,10 @@ MIN_CHARGE = 0
 MAX_CHARGE = 100
 
 # Main body of code
-charge = 50
+charge = 100
 charge_delta = 5
 bar_repr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-try:
-    while True:
         # Remember that your sentences can only be 16 characters long!
         display.lcd_display_string("Battery charge:", 1)
 
@@ -104,7 +102,7 @@ try:
                     # Left full character 
                     bar_string = bar_string + "{0x00}"
             elif i == 9:
-                # Right character
+                # Right characteråå
                 if bar_repr[i] == 0:
                     # Right empty character
                     bar_string = bar_string + "{0x05}"
@@ -127,12 +125,4 @@ try:
             if charge >= ((i + 1) * 10):
                 bar_repr[i] = 1
             else:
-                bar_repr[i] = 0            
-
-        # Wait for some time
-        sleep(1) 
-
-except KeyboardInterrupt:
-    # If there is a KeyboardInterrupt (when you press ctrl+c), exit the program and cleanup
-    print("Cleaning up!")
-    display.lcd_clear()
+                bar_repr[i] = 0
