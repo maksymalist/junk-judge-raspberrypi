@@ -5,7 +5,7 @@ from utils.model import predict_type
 from utils.lcd_display import LcdModule
 from utils.stepper_motor import SMotorModule
 
-from src.sequence import idle_mode, active_mode
+from src.sequence import init_mode, idle_mode, active_mode
 
 import drivers
 import time
@@ -24,6 +24,11 @@ class JunkJudge:
         self.led_green = led_green
         self.trapdoor = trapdoor
         self.is_open = False
+        self.debug = False
+        
+    def debug(self, debug):
+        self.debug = debug
+        return self
 
     def on_init(self):
         
@@ -38,18 +43,9 @@ class JunkJudge:
         self.led_green.off()
         self.led_red.off()
         
-        self.lcd.display("Initializing...")
- 
-        for i in range(3):
-            self.led_green.on()
-            time.sleep(1)
-            self.led_green.off()
-            time.sleep(1)
-            
-        self.state = State.IDLE
-        self.lcd.clear()
-        self.lcd.display("Ready to go!")
-        time.sleep(1)
+        if not self.debug:
+            init_mode(self, self.lcd, self.led_green)
+        
         
         idle_mode(self.lcd, self.led_green)
         # self.motor.setup()
