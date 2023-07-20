@@ -24,7 +24,6 @@ class JunkJudge:
         self.led_green = led_green
         self.trapdoor = trapdoor
         self.is_open = False
-        self.debug = False
         
     def clear_all(self):
         #clear lcd and leds
@@ -67,6 +66,8 @@ class JunkJudge:
             
     
     def toggle_open(self, channel):
+        
+        print("isopen", self.is_open)
         
         if self.state != State.IDLE:
             return 
