@@ -59,6 +59,10 @@ class JunkJudge:
             
     
     def toggle_open(self, channel):
+        
+        if self.state != State.IDLE:
+            return 
+        
         self.is_open = not self.is_open
         
         if self.is_open:
