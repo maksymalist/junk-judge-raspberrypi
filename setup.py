@@ -34,6 +34,9 @@ if __name__ == "__main__":
         machine = JunkJudge(lcd_module, stepper_motor_module, camera_module, led_red, led_green, trapdoor)
         machine.on_init()
         
+        while True:
+            machine.on_update()
+        
 
     except KeyboardInterrupt:
         GPIO.cleanup()
