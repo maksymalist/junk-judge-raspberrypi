@@ -27,6 +27,11 @@ class JunkJudge:
 
     def on_init(self):
         
+        # events for buttons
+
+        ## Trapdoor ##
+        self.trapdoor.press_event(self.toggle_open)
+        
         #clear lcd and leds
         self.lcd.clear()
         self.led_green.off()
@@ -48,9 +53,13 @@ class JunkJudge:
         idle_mode(self.lcd, self.led_green)
         # self.motor.setup()
         # self.motor.rotate_clockwise(10000)
-        
-        # events
-        self.trapdoor.press_event(toggle_open)
     
     def on_update(self):  
         pass
+    
+    def toggle_open(self):
+        self.is_open = not self.is_open
+        self.led_red.on()
+        time.sleep(0.05)
+        self.led_red.off()
+

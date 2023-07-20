@@ -8,10 +8,3 @@ def idle_mode(lcd, led_green):
     lcd.clear()
     lcd.display("insert junk")
     led_green.on()
-    
-def toggle_open(channel):
-    print("button pressed")
-    led = LED(38)
-    led.on()
-    time.sleep(1)
-    led.off()
