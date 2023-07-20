@@ -91,6 +91,13 @@ class LcdModule:
 
     # Render charge bar:
     bar_string = ""
+    
+    for i in range(10):
+        if charge >= ((i + 1) * 10):
+            bar_repr[i] = 1
+        else: 
+            bar_repr[i] = 0  
+    
     for i in range(10):
         if i == 0:
             # Left character
@@ -118,13 +125,7 @@ class LcdModule:
                 bar_string = bar_string + "{0x02}"
 
     # Print the string to display:
-    self.screen.lcd_display_extended_string(bar_string + " {0}% ".format(charge), 2)
-      
-    for i in range(10):
-        if charge >= ((i + 1) * 10):
-            bar_repr[i] = 1
-        else:
-            bar_repr[i] = 0            
+    self.screen.lcd_display_extended_string(bar_string + " {0}% ".format(charge), 2)         
 
     
   def clear(self):
