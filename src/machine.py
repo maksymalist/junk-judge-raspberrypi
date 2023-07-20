@@ -5,7 +5,7 @@ from utils.model import predict_type
 from utils.lcd_display import LcdModule
 from utils.stepper_motor import SMotorModule
 
-from sequence import idle_mode
+from src.sequence import idle_mode
 
 import drivers
 import time
