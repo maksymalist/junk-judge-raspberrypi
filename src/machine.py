@@ -5,7 +5,7 @@ from utils.model import predict_type
 from utils.lcd_display import LcdModule
 from utils.stepper_motor import SMotorModule
 
-from src.lcd_sequence import idle_mode
+from sequence import idle_mode, toggle_open
 
 import drivers
 import time
@@ -15,15 +15,17 @@ import RPi.GPIO as GPIO
 from utils.states import State
 
 class JunkJudge:
-    def __init__(self, lcd, motor, camera, led_red, led_green) -> None:
+    def __init__(self, lcd, motor, camera, led_red, led_green, trapdoor) -> None:
         self.lcd = lcd
         self.motor = motor
         self.camera = camera
         self.state = State.INIT
         self.led_red = led_red
         self.led_green = led_green
+        self.trapdoor = trapdoor
+        self.is_open = False
 
-    def init(self):
+    def on_init(self):
         
         #clear lcd and leds
         self.lcd.clear()
@@ -44,14 +46,11 @@ class JunkJudge:
         time.sleep(1)
         
         idle_mode(self.lcd, self.led_green)
-        self.motor.setup()
-        self.motor.rotate_clockwise(10000)
+        # self.motor.setup()
+        # self.motor.rotate_clockwise(10000)
+        
+        # events
+        self.trapdoor.press_event(toggle_open)
     
-    def update(self):  
-        while True:
-            try:
-                # do something
-                pass
-            except KeyboardInterrupt:
-                GPIO.cleanup()
-                sys.exit()
+    def on_update(self):  
+        pass

@@ -6,9 +6,11 @@ from utils.lcd_display import LcdModule
 from utils.stepper_motor import SMotorModule
 from utils.camera import CameraModule
 from utils.led import LED
+from utils.button import Button
 from src.machine import JunkJudge
 
 import drivers
+import sys
 import RPi.GPIO as GPIO
 
 if __name__ == "__main__":
@@ -26,10 +28,19 @@ if __name__ == "__main__":
     led_red = LED(38)
     led_green = LED(40)
     
+    trapdoor = Button(22)
+    
     
     machine = JunkJudge(lcd_module, stepper_motor_module, camera_module, led_red, led_green)
     
-    machine.init()
+    machine.on_init()
+    
+    while True:
+        try:
+            machine.on_update()
+        except KeyboardInterrupt:
+            GPIO.cleanup()
+            sys.exit()
 
 
 
