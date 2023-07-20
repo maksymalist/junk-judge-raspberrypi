@@ -34,6 +34,7 @@ class JunkJudge:
         
         #clear lcd and leds
         self.lcd.clear()
+        self.lcd.setup_custom_characters()
         self.led_green.off()
         self.led_red.off()
         

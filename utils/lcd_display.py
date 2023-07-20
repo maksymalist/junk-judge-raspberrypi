@@ -9,7 +9,7 @@ class LcdModule:
     self.MIN_PROGRESS = 0
     self.MAX_PROGRESS = 100
     
-  def setup_progress(self):
+  def setup_custom_characters(self):
     
     # Create object with custom characters data
     cc = drivers.CustomCharacters(self.display)
