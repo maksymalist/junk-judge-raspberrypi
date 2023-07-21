@@ -29,7 +29,11 @@ if __name__ == "__main__":
         led_red = LED(38)
         led_green = LED(40)
         
-        trapdoor = Button(22)
+        trapdoor = Button(18)
+        recycle_override = Button(22)
+        trash_override = Button(32)
+        biologics_override = Button(36)
+        
         
         machine = JunkJudge(lcd_module, stepper_motor_module, camera_module, led_red, led_green, trapdoor)
         machine.on_init()

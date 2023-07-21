@@ -19,10 +19,10 @@ def init_mode(machine, lcd, led_green):
         led_green.off()
         time.sleep(0.5)
             
-        machine.state = State.IDLE
-        machine.lcd.clear()
+        machine.clear_all()
         lcd.display("Ready to go!")
         time.sleep(1)
+        machine.state = State.IDLE
 
 def idle_mode(lcd, led_green):
     lcd.display("Insert Junk")
@@ -55,4 +55,6 @@ def active_mode(camera, lcd, led_red):
     ## switch to success mode ##
     lcd.display_progress(100, "Done !")
     
-    
+def confused_mode(lcd, trash_override, recycle_override, biologics_override, led_red, led_green):
+    lcd.display("I'm confused")
+    led_red.on()
