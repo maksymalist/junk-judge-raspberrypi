@@ -1,8 +1,14 @@
 import requests
+from PIL import Image
+import io
+import base64
 
 def img_to_base64(img_path):
-    with open(img_path, "rb") as f:
-        return f.read().encode("base64")
+    pil_image = Image.open(img_path)
+    buffered = io.BytesIO()
+    pil_image.save(buffered, format="JPEG")  # You can change the format if needed (JPEG, PNG, etc.)
+    base64_encoded = base64.b64encode(buffered.getvalue()).decode("utf-8")
+    return base64_encoded
 
 def predict_type(input_path):
   
