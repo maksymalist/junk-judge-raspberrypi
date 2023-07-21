@@ -1,7 +1,7 @@
 from gradio_client import Client
 import json
 
-client = Client("https://maksymalist-junk-judge.hf.space/")
+client = Client("https://maksymalist-junk-judge.hf.space/", serialize=False)
 
 def predict_type(input_path):
 
