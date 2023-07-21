@@ -41,7 +41,7 @@ def active_mode(camera, lcd, led_red):
     lcd.display_progress(25, "Identifying type...")
     print("predicting type...")
     data = predict_type(file_path)
-    print(data.keys())
+    print(data)
     
     return  
     
