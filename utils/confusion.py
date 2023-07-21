@@ -30,8 +30,8 @@ MORPHEUS_CLASSES = {
 
 def get_confusion_level(data):
     morpheus_preds = data['result'][0]['probabilities'][0]
-    neo_preds = data['result'][0]['m1_confidence']
-    trinity_preds = data['result'][0]['m2_confidence']
+    neo_preds = data['result'][0]['m1_confidence'].values()
+    trinity_preds = data['result'][0]['m2_confidence'].values()
     
     morpheus_entropy = calculate_entropy(morpheus_preds)
     morpheus_mov = calculate_mov(morpheus_preds)
@@ -43,38 +43,38 @@ def get_confusion_level(data):
     trinity_mov = calculate_mov(trinity_preds)
     
     # format a string to display the results
+
     output = f"""
-    
-    #####################
-    ##
-    ## Morpheus:
-    ## 
-    ## prediction: {MORPHEUS_CLASSES[morpheus_preds.index(max(morpheus_preds))]} -> {max(morpheus_preds) * 100}%
-    ## entropy: {morpheus_entropy}
-    ## mov: {morpheus_mov}
-    ##
-    #####################
-    
-    #####################
-    ##
-    ## Neo:
-    ##
-    ## prediction: {NEO_CLASSES[neo_preds.index(max(neo_preds))]} -> {max(neo_preds) * 100}%
-    ## entropy: {neo_entropy}
-    ## mov: {neo_mov}
-    ##
-    #####################
-    
-    #####################
-    ##
-    ## Trinity:
-    ## 
-    ## predction: {TRINITY_CLASSES[trinity_preds.index(max(trinity_preds))]} -> {max(trinity_preds) * 100}%
-    ## entropy: {trinity_entropy}
-    ## mov: {trinity_mov}
-    ##
-    #####################
-    
+        
+      #####################
+      ##
+      ## Morpheus:
+      ## 
+      ## prediction: {list(MORPHEUS_CLASSES.keys())[list(morpheus_preds).index(max(morpheus_preds))]} -> {max(morpheus_preds) * 100}%
+      ## entropy: {morpheus_entropy}
+      ## mov: {morpheus_mov}
+      ##
+      #####################
+      
+      #####################
+      ##
+      ## Neo:
+      ##
+      ## prediction: {list(NEO_CLASSES.keys())[list(neo_preds).index(max(neo_preds))]} -> {max(neo_preds) * 100}%
+      ## entropy: {neo_entropy}
+      ## mov: {neo_mov}
+      ##
+      #####################
+      
+      #####################
+      ##
+      ## Trinity:
+      ## 
+      ## prediction: {list(TRINITY_CLASSES.keys())[list(trinity_preds).index(max(trinity_preds))]} -> {max(trinity_preds) * 100}%
+      ## entropy: {trinity_entropy}
+      ## mov: {trinity_mov}
+      ##
+      #####################
+      
     """
-    
     print(output)
