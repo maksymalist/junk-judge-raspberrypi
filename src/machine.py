@@ -63,7 +63,6 @@ class JunkJudge:
     
     def on_update(self):  
         pass
-            
     
     def toggle_open(self, channel):
         
@@ -72,7 +71,7 @@ class JunkJudge:
         
         if self.is_open:
             self.clear_all()
-            active_mode(self, self.lcd, self.led_red)
+            active_mode(self.camera, self.lcd, self.led_red)
             self.state = State.ACTIVE
             
         self.is_open = not self.is_open
