@@ -5,6 +5,7 @@ from utils.states import State
 from utils.model import predict_type
 from utils.firebase import upload_file_to_firebase
 from utils.notion import create_notion_entry
+from utils.confusion import get_confusion_level
 
 import RPi.GPIO as GPIO
 import time
@@ -40,11 +41,10 @@ def active_mode(camera, lcd, led_red):
     ## predict type ##
     lcd.display_progress(25, "Identifying type...")
     print("predicting type...")
+    
     data = predict_type(file_path)
     prediction = data['result'][0]['result']
-    
-    print(data)
-    print(prediction)
+    confusion = get_confusion_level(data)
     
     ## upload to firebase ##
     lcd.display_progress(50, "Saving results...")
