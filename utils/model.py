@@ -10,4 +10,4 @@ def predict_type(input_path):
     )
 
 
-    return result
+    return result["output"]
