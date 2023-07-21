@@ -43,6 +43,9 @@ def active_mode(camera, lcd, led_red):
     data = predict_type(file_path)
     prediction = data['result'][0]['result']
     
+    print(data)
+    print(prediction)
+    
     ## upload to firebase ##
     lcd.display_progress(50, "Saving results...")
     key, file_size, file_type, file_name, file_url = upload_file_to_firebase(file_path, prediction)
