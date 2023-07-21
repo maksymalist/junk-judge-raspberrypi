@@ -39,7 +39,10 @@ def active_mode(camera, lcd, led_red):
     
     ## predict type ##
     lcd.display_progress(25, "Identifying type...")
-    prediction = predict_type(file_path)
+    data = predict_type(file_path)
+    print(data)
+    
+    return  
     
     ## upload to firebase ##
     lcd.display_progress(50, "Saving results...")
