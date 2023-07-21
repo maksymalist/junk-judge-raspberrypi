@@ -1,14 +1,22 @@
-from gradio_client import Client
-import json
+import requests
 
-client = Client("https://maksymalist-junk-judge.hf.space/", serialize=False, hf_token="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")
+def img_to_base64(img_path):
+    with open(img_path, "rb") as f:
+        return f.read().encode("base64")
 
 def predict_type(input_path):
+  
+    item = {
+        "image_b64": img_to_base64(input_path)
+    }
 
-    result = client.predict(
-		input_path,	# str (filepath or URL to image) in 'image' Image component
-		api_name="/predict"
+    response = requests.post(
+      "https://junk-judge-web.vercel.app/api/predict", 
+      json=item, 
+    headers={
+      "Content-Type": "application/json"
+    },
+    timeout=10
     )
-
-
-    return result
+    
+    return response.json()
