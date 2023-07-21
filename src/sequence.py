@@ -28,32 +28,14 @@ def idle_mode(lcd, led_green):
 def active_mode(machine, lcd, led_red):
     led_red.on()
     
-    steps = [
-        {
-            "message": "Taking picture...",
-            "progress": 0,
-            "action": machine.camera.take_picture
-        },
-        {
-            "message": "Identifying type...",
-            "progress": 25,
-        },
-        {
-            "message": "Sorting junk...",
-            "progress": 50,
-        },
-        {
-            "message": "Sorting junk...",
-            "progress": 75,
-        },
-        {
-            "message": "Done !",
-            "progress": 100,
-        }
-    ]
-    
-    lcd.display_progress(0, "taking picture...")
+    lcd.display_progress(0, "taking picture...") ## take picture ##
     time.sleep(1)
-    lcd.display_progress(25, "Identifying type...")
+    lcd.display_progress(25, "Identifying type...") ## predict type ##
+    time.sleep(1)
+    lcd.display_progress(50, "Saving results...")  ## upload to firebase ##
+    time.sleep(1)
+    lcd.display_progress(75, "Sorting junk...") ## move motor ##
+    time.sleep(1)
+    lcd.display_progress(100, "Done !") ## switch to success mode ##
     
     
