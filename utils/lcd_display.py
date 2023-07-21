@@ -6,8 +6,6 @@ import sys
 class LcdModule:
   def __init__(self, lcd) -> None:
     self.screen = lcd
-    self.MIN_PROGRESS = 0
-    self.MAX_PROGRESS = 100
     
   def setup_custom_characters(self):
     
@@ -81,58 +79,52 @@ class LcdModule:
   def display(self, message):
     self.screen.lcd_display_string(message, 1)
     
-  def display_progress(self, steps):
+  def display_progress(self, progress, message):
 
     bar_repr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     # Remember that your sentences can only be 16 characters long!
     self.screen.lcd_display_string("", 1)
     
-    for step in steps:
-      
-      message = step["message"]
-      progress = step["progress"]
         
-      # Render charge bar:
-      bar_string = ""
-      
-      for i in range(10):
-          if progress >= ((i + 1) * 10):
-              bar_repr[i] = 1
-          else: 
-              bar_repr[i] = 0  
-      
-      for i in range(10):
-        if i == 0:
-            # Left character
-            if bar_repr[i] == 0:
-                # Left empty character
-                bar_string = bar_string + "{0x01}"
-            else:
-                # Left full character 
-                bar_string = bar_string + "{0x00}"
-        elif i == 9:
-            # Right character
-            if bar_repr[i] == 0:
-                # Right empty character
-                bar_string = bar_string + "{0x05}"
-            else:
-                # Right full character
-                bar_string = bar_string + "{0x04}"
-        else:
-            # Central character
-            if bar_repr[i] == 0:
-                # Central empty character
-                bar_string = bar_string + "{0x03}"
-            else:
-                # Central full character
-                bar_string = bar_string + "{0x02}"
-                  
-        # Print the string to display:
-      self.screen.lcd_display_string("                ", 1)
-      self.screen.lcd_display_string(message, 1)
-      self.screen.lcd_display_extended_string(bar_string + " {0}% ".format(progress), 2)  
-        
-      time.sleep(2)       
+    # Render charge bar:
+    bar_string = ""
+    
+    for i in range(10):
+        if progress >= ((i + 1) * 10):
+            bar_repr[i] = 1
+        else: 
+            bar_repr[i] = 0  
+    
+    for i in range(10):
+      if i == 0:
+          # Left character
+          if bar_repr[i] == 0:
+              # Left empty character
+              bar_string = bar_string + "{0x01}"
+          else:
+              # Left full character 
+              bar_string = bar_string + "{0x00}"
+      elif i == 9:
+          # Right character
+          if bar_repr[i] == 0:
+              # Right empty character
+              bar_string = bar_string + "{0x05}"
+          else:
+              # Right full character
+              bar_string = bar_string + "{0x04}"
+      else:
+          # Central character
+          if bar_repr[i] == 0:
+              # Central empty character
+              bar_string = bar_string + "{0x03}"
+          else:
+              # Central full character
+              bar_string = bar_string + "{0x02}"
+                
+      # Print the string to display:
+    self.screen.lcd_display_string("                ", 1)
+    self.screen.lcd_display_string(message, 1)
+    self.screen.lcd_display_extended_string(bar_string + " {0}% ".format(progress), 2)     
 
     
   def clear(self):

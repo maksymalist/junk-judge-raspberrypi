@@ -25,13 +25,14 @@ def idle_mode(lcd, led_green):
     led_green.on()
     
     
-def active_mode(lcd, led_red):
+def active_mode(machine, lcd, led_red):
     led_red.on()
     
     steps = [
         {
             "message": "Taking picture...",
             "progress": 0,
+            "action": machine.camera.take_picture
         },
         {
             "message": "Identifying type...",
@@ -51,6 +52,8 @@ def active_mode(lcd, led_red):
         }
     ]
     
-    lcd.display_progress(steps)
+    lcd.display_progress(0, "taking picture...")
+    time.sleep(1)
+    lcd.display_progress(25, "Identifying type...")
     
     
