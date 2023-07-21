@@ -11,4 +11,4 @@ def predict_type(input_path):
     )
 
 
-    return json.loads(open(result))
+    return result
