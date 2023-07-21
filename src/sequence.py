@@ -19,10 +19,10 @@ def init_mode(machine, lcd, led_green):
         led_green.off()
         time.sleep(0.5)
             
-        machine.clear_all()
-        lcd.display("Ready to go!")
-        time.sleep(1)
-        machine.state = State.IDLE
+    machine.clear_all()
+    lcd.display("Ready to go!")
+    time.sleep(1)
+    machine.state = State.IDLE
 
 def idle_mode(lcd, led_green):
     lcd.display("Insert Junk")
