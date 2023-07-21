@@ -35,7 +35,18 @@ if __name__ == "__main__":
         biologics_override = Button(36)
         
         
-        machine = JunkJudge(lcd_module, stepper_motor_module, camera_module, led_red, led_green, trapdoor)
+        machine = JunkJudge(
+            lcd_module, 
+            stepper_motor_module, 
+            camera_module, 
+            led_red, 
+            led_green, 
+            trapdoor, 
+            recycle_override, 
+            trash_override, 
+            biologics_override
+            )
+        
         machine.on_init()
         
         while True:
