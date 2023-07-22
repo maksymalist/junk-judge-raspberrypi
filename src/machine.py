@@ -42,6 +42,7 @@ class JunkJudge:
         
 
     def init(self):
+        self.clear_all()
         self.lcd.display("Initializing...")
  
         for _ in range(3):
@@ -50,7 +51,6 @@ class JunkJudge:
             self.led_green.off()
             time.sleep(0.5)
                 
-        self.clear_all()
         self.lcd.display("Ready to go!")
         time.sleep(1)
         self.idle()
@@ -58,11 +58,13 @@ class JunkJudge:
         # self.motor.rotate_clockwise(10000)
         
     def idle(self):
+        self.clear_all()
         self.state = State.IDLE
         self.lcd.display("# Insert Junk #")
         self.led_green.on()
         
     def active(self):
+        self.clear_all()
         self.state = State.ACTIVE
         self.led_red.on()
         file_path = 'images/test.jpg'
@@ -99,6 +101,7 @@ class JunkJudge:
         self.success()
         
     def success(self):
+        self.clear_all()
         self.led_green.on()
         self.lcd.display("Thanks for saving", 1)
         self.lcd.display("the planet :)", 2)
@@ -115,7 +118,6 @@ class JunkJudge:
             return 
         
         if self.is_open:
-            self.clear_all()
             self.active()
             
         self.is_open = not self.is_open
