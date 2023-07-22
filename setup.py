@@ -47,7 +47,7 @@ if __name__ == "__main__":
             biologics_override
             )
         
-        machine.on_init()
+        machine.init()
         
         while True:
             machine.on_update()

@@ -76,8 +76,8 @@ class LcdModule:
     # Load custom characters data to CG RAM:
     cc.load_custom_characters_data()
 
-  def display(self, message):
-    self.screen.lcd_display_string(message, 1)
+  def display(self, message, line=1):
+    self.screen.lcd_display_string(message, line)
     
   def display_progress(self, progress, message):
 

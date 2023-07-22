@@ -1,11 +1,7 @@
 from utils.firebase import upload_file_to_firebase
 from utils.notion import create_notion_entry
 from utils.model import predict_type
-
-from utils.lcd_display import LcdModule
-from utils.stepper_motor import SMotorModule
-
-from src.sequence import init_mode, idle_mode, active_mode
+from utils.confusion import get_confusion_level
 
 import drivers
 import time
@@ -33,9 +29,8 @@ class JunkJudge:
         self.lcd.clear()
         self.led_green.off()
         self.led_red.off()
-
-    def on_init(self):
         
+    def setup(self):
         # events for buttons
 
         ## Trapdoor ##
@@ -45,10 +40,71 @@ class JunkJudge:
         self.clear_all()
         self.lcd.setup_custom_characters()
         
-        init_mode(self, self.lcd, self.led_green)
-        idle_mode(self.lcd, self.led_green)
+
+    def init(self):
+        self.lcd.display("Initializing...")
+ 
+        for _ in range(3):
+            self.led_green.on()
+            time.sleep(0.5)
+            self.led_green.off()
+            time.sleep(0.5)
+                
+        self.clear_all()
+        self.lcd.display("Ready to go!")
+        time.sleep(1)
+        self.idle()
         # self.motor.setup()
         # self.motor.rotate_clockwise(10000)
+        
+    def idle(self):
+        self.state = State.IDLE
+        self.lcd.display("# Insert Junk #")
+        self.led_green.on()
+        
+    def active(self):
+        self.state = State.ACTIVE
+        self.led_red.on()
+        file_path = 'images/test.jpg'
+        
+        ## take picture ##
+        self.lcd.display_progress(0, "taking picture...")
+        self.camera.take_picture(file_path)
+        
+        ## predict type ##
+        self.lcd.display_progress(25, "Identifying type...")
+        print("predicting type...")
+        
+        data = predict_type(file_path)
+        prediction = data['result'][0]['result']
+        
+        #TODO: create a function to get the confusion level from the data
+        confusion = get_confusion_level(data)
+        
+        ## upload to firebase ##
+        self.lcd.display_progress(50, "Saving results...")
+        key, file_size, file_type, file_name, file_url = upload_file_to_firebase(file_path, prediction)
+        create_notion_entry(file_url, prediction, file_type, file_size, key)
+        
+        ## move motor ##
+        self.lcd.display_progress(75, "Sorting junk...")
+        
+        print("*motor noises*")
+        print("*motor noises*")
+        print("*motor noises*")
+        
+        ## switch to success mode ##
+        self.lcd.display_progress(100, "Done !")
+        time.sleep(1)
+        self.success()
+        
+    def success(self):
+        self.led_green.on()
+        self.lcd.display("Thanks for saving", 1)
+        self.lcd.display("the planet :)", 2)
+        time.sleep(2)
+        self.idle()
+        
     
     def on_update(self):  
         pass
@@ -60,8 +116,7 @@ class JunkJudge:
         
         if self.is_open:
             self.clear_all()
-            active_mode(self.camera, self.lcd, self.led_red)
-            self.state = State.ACTIVE
+            self.active()
             
         self.is_open = not self.is_open
 
