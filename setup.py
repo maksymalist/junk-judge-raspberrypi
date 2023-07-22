@@ -47,6 +47,7 @@ if __name__ == "__main__":
             biologics_override
             )
         
+        machine.setup()
         machine.init()
         
         while True:
