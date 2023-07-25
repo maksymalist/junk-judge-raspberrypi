@@ -43,6 +43,11 @@ class JunkJudge:
 
     def init(self):
         self.clear_all()
+        
+        self.motor.setup()
+        self.motor.rotate_clockwise(10000)
+        
+        return 
         self.lcd.display("Initializing...")
  
         for _ in range(3):
@@ -54,8 +59,6 @@ class JunkJudge:
         self.lcd.display("Ready to go!")
         time.sleep(1)
         self.idle()
-        # self.motor.setup()
-        # self.motor.rotate_clockwise(10000)
         
     def idle(self):
         self.clear_all()
