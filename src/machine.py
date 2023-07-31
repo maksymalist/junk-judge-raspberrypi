@@ -130,8 +130,6 @@ class JunkJudge:
         pass
     
     def toggle_open(self, channel):
-        print("button pressed")
-        print(self.is_open == True)
         
         if self.state != State.IDLE:
             return 
