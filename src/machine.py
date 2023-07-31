@@ -43,11 +43,8 @@ class JunkJudge:
 
     def init_sequence(self):
         self.clear_all()
-        
-        self.motor.setup()
-        self.motor.rotate_clockwise(10000)
-        
-        return 
+        self.state = State.INIT
+         
         self.lcd.display("Initializing...")
  
         for _ in range(3):
