@@ -9,6 +9,8 @@ from utils.led import LED
 from utils.button import Button
 from src.machine import JunkJudge
 
+import firebase_admin
+from firebase_admin import credentials
 import drivers
 import sys
 import RPi.GPIO as GPIO
@@ -16,8 +18,16 @@ import RPi.GPIO as GPIO
 if __name__ == "__main__":
 
     try:
+        
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BOARD)
+        
+        # Initialize Firebase Admin SDK
+        cred = credentials.Certificate("credentials.json")
+        firebase_admin.initialize_app(cred, {
+            'storageBucket': 'junk-judge.appspot.com'
+        })
+
         
         camera = PiCamera()
         screen = drivers.Lcd()
@@ -60,6 +70,7 @@ if __name__ == "__main__":
         sys.exit()
         
     except Exception as e:
+        print("failed to do something")
         machine.failure_sequence()
 
 
