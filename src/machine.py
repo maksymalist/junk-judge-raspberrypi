@@ -113,6 +113,15 @@ class JunkJudge:
         time.sleep(2)
         self.idle()
         
+    def failure_sequence(self):
+        self.clear_all()
+        self.led_red.on()
+        self.lcd.display("Something went", 1)
+        self.lcd.display("wrong :(", 2)
+        time.sleep(2)
+        self.init_sequence()
+        
+        
     
     def on_update(self):  
         pass

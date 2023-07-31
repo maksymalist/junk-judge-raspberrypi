@@ -58,6 +58,9 @@ if __name__ == "__main__":
         GPIO.cleanup()
         machine.clear_all()
         sys.exit()
+        
+    except Exception as e:
+        machine.failure_sequence()
 
 
 
