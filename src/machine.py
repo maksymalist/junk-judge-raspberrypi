@@ -60,6 +60,8 @@ class JunkJudge:
     def idle_sequence(self):
         self.clear_all()
         self.is_open = False
+        print("idle sequence")
+        print(self.is_open == True)
         self.state = State.IDLE
         self.lcd.display("# Open me #")
         self.led_green.on()
