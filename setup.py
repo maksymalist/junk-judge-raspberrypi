@@ -48,7 +48,7 @@ if __name__ == "__main__":
             )
         
         machine.setup()
-        machine.init()
+        machine.init_sequence()
         
         while True:
             machine.on_update()

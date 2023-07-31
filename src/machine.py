@@ -41,7 +41,7 @@ class JunkJudge:
         self.lcd.setup_custom_characters()
         
 
-    def init(self):
+    def init_sequence(self):
         self.clear_all()
         
         self.motor.setup()
@@ -58,15 +58,20 @@ class JunkJudge:
                 
         self.lcd.display("Ready to go!")
         time.sleep(1)
-        self.idle()
+        self.idle_sequence()
         
-    def idle(self):
+    def idle_sequence(self):
         self.clear_all()
         self.state = State.IDLE
-        self.lcd.display("# Insert Junk #")
+        self.lcd.display("# Open me #")
         self.led_green.on()
         
-    def active(self):
+    def open_sequence(self):
+        self.clear_all()
+        self.led_green.on()
+        self.lcd.display("# Insert Junk #", 1)
+        
+    def active_sequence(self):
         self.clear_all()
         self.state = State.ACTIVE
         self.led_red.on()
@@ -101,9 +106,9 @@ class JunkJudge:
         ## switch to success mode ##
         self.lcd.display_progress(100, "Done !")
         time.sleep(1)
-        self.success()
+        self.success_sequence()
         
-    def success(self):
+    def success_sequence(self):
         self.clear_all()
         self.led_green.on()
         self.lcd.display("Thanks for saving", 1)
@@ -121,7 +126,9 @@ class JunkJudge:
             return 
         
         if self.is_open:
-            self.active()
+            self.active_sequence()
+        else:
+            self.open_sequence()
             
         self.is_open = not self.is_open
 
