@@ -138,8 +138,8 @@ class JunkJudge:
         
         if self.is_open:
             self.active_sequence()
+            self.is_open = False
         else:
             self.open_sequence()
+            self.is_open = True
             
-        self.is_open = not self.is_open
-
