@@ -70,7 +70,7 @@ if __name__ == "__main__":
         sys.exit()
         
     except Exception as e:
-        print("failed to do something")
+        print("failed to do something", e)
         machine.failure_sequence()
 
 
