@@ -129,7 +129,7 @@ class JunkJudge:
         
     
     def on_update(self):  
-        print("state", self.is_open)
+        print("state", self.trapdoor_open.is_pressed(), self.trapdoor_close.is_pressed())
     
     def open_trapdoor(self, channel):
         self.is_open = True
