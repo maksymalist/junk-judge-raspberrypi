@@ -23,7 +23,7 @@ class JunkJudge:
         self.recycle_override = recycle_override
         self.trash_override = trash_override
         self.biologics_override = biological_override
-        self.is_open = False
+        self.is_item = False
         
     def clear_all(self):
         #clear lcd and leds
@@ -55,9 +55,8 @@ class JunkJudge:
         
     def idle_sequence(self):
         self.clear_all()
-        self.is_open = False
+        self.is_item = False
         print("idle sequence")
-        print(self.is_open == True)
         self.state = State.IDLE
         self.lcd.display("# Open me #")
         self.led_green.on()
@@ -124,9 +123,10 @@ class JunkJudge:
     
     def on_update(self):  
         if self.state == State.IDLE:
-            if self.trapdoor_open.is_pressed():
+            if self.trapdoor_open.is_pressed() and not self.is_item:
                 self.open_sequence()
-            elif self.trapdoor_close.is_pressed():
+                self.is_item = True
+            elif self.trapdoor_close.is_pressed() and self.is_item:
                 self.active_sequence()
 
             
