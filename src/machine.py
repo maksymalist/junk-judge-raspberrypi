@@ -123,10 +123,12 @@ class JunkJudge:
         
     
     def on_update(self):  
+        i = 0
         if self.state == State.IDLE:
             if self.trapdoor_open.is_pressed():
                 self.open_sequence()
             elif self.trapdoor_close.is_pressed():
-                print("trapdoor closed")
+                print("trapdoor closed", str(i))
+                i += 1
 
             
