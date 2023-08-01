@@ -11,14 +11,15 @@ import RPi.GPIO as GPIO
 from utils.states import State
 
 class JunkJudge:
-    def __init__(self, lcd, motor, camera, led_red, led_green, trapdoor, recycle_override, trash_override, biological_override) -> None:
+    def __init__(self, lcd, motor, camera, led_red, led_green, trapdoor_open, trapdoor_close, recycle_override, trash_override, biological_override) -> None:
         self.lcd = lcd
         self.motor = motor
         self.camera = camera
         self.state = State.INIT
         self.led_red = led_red
         self.led_green = led_green
-        self.trapdoor = trapdoor
+        self.trapdoor_open = trapdoor_open
+        self.trapdoor_close = trapdoor_close
         self.recycle_override = recycle_override
         self.trash_override = trash_override
         self.biologics_override = biological_override
@@ -34,7 +35,8 @@ class JunkJudge:
         # events for buttons
 
         ## Trapdoor ##
-        self.trapdoor.press_event(self.toggle_open)
+        self.trapdoor_open.press_event(self.open_trapdoor)
+        self.trapdoor_close.press_event(self.close_trapdoor)
         
         #setup lcd and leds
         self.clear_all()
@@ -129,17 +131,9 @@ class JunkJudge:
     def on_update(self):  
         pass
     
-    def toggle_open(self, channel):
-        print("button pressed")
-        print(self.is_open == True)
-        
-        if self.state != State.IDLE:
-            return 
-        
-        if self.is_open:
-            self.active_sequence()
-            self.is_open = False
-        else:
-            self.open_sequence()
-            self.is_open = True
+    def open_trapdoor(self, channel):
+        print("Opened trapdoor")
+            
+    def close_trapdoor(self, channel):
+        print("Closed trapdoor")
             

@@ -39,7 +39,9 @@ if __name__ == "__main__":
         led_red = LED(38)
         led_green = LED(40)
         
-        trapdoor = Button(18)
+        trapdoor_open  = Button(16)
+        trapdoor_close = Button(18)
+        
         recycle_override = Button(22)
         trash_override = Button(32)
         biologics_override = Button(36)
@@ -51,7 +53,8 @@ if __name__ == "__main__":
             camera_module, 
             led_red, 
             led_green, 
-            trapdoor, 
+            trapdoor_open, 
+            trapdoor_close,
             recycle_override, 
             trash_override, 
             biologics_override
