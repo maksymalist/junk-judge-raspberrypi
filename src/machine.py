@@ -31,13 +31,7 @@ class JunkJudge:
         self.led_green.off()
         self.led_red.off()
         
-    def setup(self):
-        # events for buttons
-
-        ## Trapdoor ##
-        self.trapdoor_open.press_event(self.open_trapdoor)
-        self.trapdoor_close.press_event(self.close_trapdoor)
-        
+    def setup(self):  
         #setup lcd and leds
         self.clear_all()
         self.lcd.setup_custom_characters()
@@ -129,11 +123,10 @@ class JunkJudge:
         
     
     def on_update(self):  
-        print("state", self.trapdoor_open.is_pressed(), self.trapdoor_close.is_pressed())
-    
-    def open_trapdoor(self, channel):
-        self.is_open = True
-            
-    def close_trapdoor(self, channel):
-        self.is_open = False
+        if self.state == State.IDLE:
+            if self.trapdoor_open.is_pressed():
+                self.open_sequence()
+            elif self.trapdoor_close.is_pressed():
+                print("trapdoor closed")
+
             
