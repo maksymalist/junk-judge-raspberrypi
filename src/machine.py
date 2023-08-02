@@ -122,6 +122,8 @@ class JunkJudge:
         
     
     def on_update(self):  
+        
+        # Button sequence
         if self.state == State.IDLE:
             if self.trapdoor_open.is_pressed() and not self.is_item:
                 self.open_sequence()
