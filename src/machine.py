@@ -1,5 +1,5 @@
 from utils.firebase import upload_file_to_firebase
-from utils.notion import create_notion_entry
+from utils.notion import create_image_entry, update_judge_status
 from utils.model import predict_type
 from utils.confusion import get_confusion_level
 
@@ -12,6 +12,9 @@ from utils.states import State
 
 class JunkJudge:
     def __init__(self, lcd, motor, camera, led_red, led_green, trapdoor_open, trapdoor_close, recycle_override, trash_override, biological_override) -> None:
+        self.version = "Beta v1.0"
+        self.judge_id = 1
+        self.loop_count = 0
         self.lcd = lcd
         self.motor = motor
         self.camera = camera
@@ -24,6 +27,7 @@ class JunkJudge:
         self.trash_override = trash_override
         self.biologics_override = biological_override
         self.is_item = False
+
         
     def clear_all(self):
         #clear lcd and leds
@@ -89,7 +93,7 @@ class JunkJudge:
         ## upload to firebase ##
         self.lcd.display_progress(50, "Saving results...")
         key, file_size, file_type, file_name, file_url = upload_file_to_firebase(file_path, prediction)
-        create_notion_entry(file_url, prediction, file_type, file_size, key)
+        create_image_entry(file_url, prediction, file_type, file_size, key)
         
         ## move motor ##
         self.lcd.display_progress(75, "Sorting junk...")
@@ -123,6 +127,11 @@ class JunkJudge:
     
     def on_update(self):  
         
+        # Status update
+        if self.loop_count % 100 == 0:
+            update_judge_status(self.judge_id, True, "OK", self.state.name, self.version)
+        
+        
         # Button sequence
         if self.state == State.IDLE:
             if self.trapdoor_open.is_pressed() and not self.is_item:
@@ -130,5 +139,7 @@ class JunkJudge:
                 self.is_item = True
             elif self.trapdoor_close.is_pressed() and self.is_item:
                 self.active_sequence()
+                
+        self.loop_count += 1
 
             
