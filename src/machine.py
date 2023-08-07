@@ -129,7 +129,13 @@ class JunkJudge:
         
         # Status update
         if self.loop_count % 100 == 0:
-            update_judge_status(self.judge_id, True, "OK", self.state.name, self.version)
+            update_judge_status(
+                self.judge_id, 
+                "True" if self.trapdoor_open.is_pressed() else "False",
+                "On",
+                str(self.state),
+                self.version
+            )
         
         
         # Button sequence
