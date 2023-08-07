@@ -65,7 +65,7 @@ if __name__ == "__main__":
         machine.init_sequence()
         
         atexit.register(machine.clear_all)
-        atexit.register(machine.turn_off)
+        # atexit.register(machine.turn_off)
         
         while True:
             machine.on_update()
