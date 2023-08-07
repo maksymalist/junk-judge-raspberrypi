@@ -16,22 +16,21 @@ GPIO.setup(EN_pin,GPIO.OUT) # set enable pin as output
 #
 
 class NMotor:
-    def __init__(self, dir_pin, en_pin, step_pin, delay):
+    def __init__(self, dir_pin, step_pin, enable_pin, motor_pins):
         self.dir_pin = dir_pin
-        self.en_pin = en_pin
         self.step_pin = step_pin
-        self.delay = delay
+        self.enable_pin = enable_pin
+        self.motor_pins = motor_pins
+        self.motor = RpiMotorLib.A4988Nema(dir_pin, step_pin, motor_pins, "DRV8825")
         
-        GPIO.setup(self.pins, GPIO.OUT)
+        GPIO.setup(enable_pin, GPIO.OUT)
         
-        
-        
-GPIO.output(EN_pin,GPIO.LOW) # pull enable to low to enable motor
-mymotortest.motor_go(False, # True=Clockwise, False=Counter-Clockwise
-                     "Full" , # Step type (Full,Half,1/4,1/8,1/16,1/32)
-                     200, # number of steps
-                     .0005, # step delay [sec]
-                     False, # True = print verbose output 
-                     .05) # initial delay [sec]
-
-GPIO.cleanup() # clear GPIO allocations after run
+    def rotate(self, direction, num_steps=200):
+        GPIO.output(self.enable_pin, GPIO.LOW)
+        self.motor.motor_go(direction, # False=Clockwise, True=Counterclockwise
+            "Full" , # Step type (Full,Half,1/4,1/8,1/16,1/32)
+            num_steps, # number of steps
+            .0005, # step delay [sec]
+            False, # True = print verbose output 
+            .05) # initial delay [sec]
+        GPIO.output(self.enable_pin, GPIO.HIGH)

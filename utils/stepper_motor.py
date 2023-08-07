@@ -5,9 +5,7 @@ class SMotorModule:
   def __init__(self, channels, wait_time) -> None:
     self.channels = channels
     self.wait_time = wait_time
-
-  def setup(self):
-    GPIO.setup(self.channels, GPIO.OUT) # setting the pins to output mode
+    GPIO.setup(self.channels, GPIO.OUT)
 
   def rotate_clockwise(self, angle):
 
