@@ -124,6 +124,16 @@ class JunkJudge:
         self.init_sequence()
         
         
+    def turn_off(self):
+        update_judge_status(
+            self.judge_id, 
+            str(self.trapdoor_open.is_pressed()),
+            "Off",  ## <---- Triggers when the program is turned off
+            str(self.state),
+            self.version
+        )
+        
+        
     
     def on_update(self):  
         
@@ -131,8 +141,8 @@ class JunkJudge:
         if self.loop_count % 100 == 0:
             update_judge_status(
                 self.judge_id, 
-                "True" if self.trapdoor_open.is_pressed() else "False",
-                "On",
+                str(self.trapdoor_open.is_pressed()),
+                "On",   ## <---- reaffirming that the machine is on
                 str(self.state),
                 self.version
             )

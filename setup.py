@@ -14,6 +14,7 @@ from firebase_admin import credentials
 import drivers
 import sys
 import RPi.GPIO as GPIO
+import atexit
 
 if __name__ == "__main__":
 
@@ -62,6 +63,9 @@ if __name__ == "__main__":
         
         machine.setup()
         machine.init_sequence()
+        
+        atexit.register(machine.clear_all)
+        atexit.register(machine.turn_off)
         
         while True:
             machine.on_update()
