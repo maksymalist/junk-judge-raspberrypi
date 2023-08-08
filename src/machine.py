@@ -77,7 +77,7 @@ class JunkJudge:
         file_path = 'images/test.jpg'
         
         ## take picture ##
-        self.lcd.display_progress(0, "taking picture...")
+        self.lcd.display_progress(0, "Scanning...")
         self.camera.take_picture(file_path)
         
         ## predict type ##
