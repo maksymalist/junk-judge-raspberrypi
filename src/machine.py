@@ -68,7 +68,7 @@ class JunkJudge:
     def open_sequence(self):
         self.clear_all()
         self.led_green.on()
-        self.lcd.display("# Insert Junk #", 1)
+        self.lcd.display("# Insert Trash #", 1)
         
     def active_sequence(self):
         self.clear_all()
