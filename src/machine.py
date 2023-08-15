@@ -96,7 +96,7 @@ class JunkJudge:
         create_image_entry(file_url, prediction, file_type, file_size, key)
         
         ## move motor ##
-        self.lcd.display_progress(75, "Sorting junk...")
+        self.lcd.display_progress(75, "Sorting...")
         
         print("*motor noises*")
         print("*motor noises*")
