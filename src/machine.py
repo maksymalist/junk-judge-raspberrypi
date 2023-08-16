@@ -102,6 +102,8 @@ class JunkJudge:
         print("*motor noises*")
         print("*motor noises*")
         
+        time.sleep(1)
+        
         ## switch to success mode ##
         self.lcd.display_progress(100, "Done !")
         time.sleep(1)
