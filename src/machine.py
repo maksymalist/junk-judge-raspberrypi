@@ -62,7 +62,7 @@ class JunkJudge:
         self.is_item = False
         print("idle sequence")
         self.state = State.IDLE
-        self.lcd.display("# Open me #")
+        self.lcd.display("#   Open me!   #")
         self.led_green.on()
         
     def open_sequence(self):
