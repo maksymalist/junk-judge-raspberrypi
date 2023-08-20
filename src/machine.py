@@ -82,7 +82,7 @@ class JunkJudge:
         
         ## predict type ##
         self.lcd.display_progress(25, "Identifying type...")
-        print("predicting type...")
+        print("Predicting type...")
         
         data = predict_type(file_path)
         prediction = data['result'][0]['result']
