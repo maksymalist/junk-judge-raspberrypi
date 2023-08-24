@@ -42,6 +42,7 @@ class JunkJudge:
         
 
     def init_sequence(self):
+        print("INIT sequence \n")
         self.clear_all()
         self.state = State.INIT
          
@@ -61,19 +62,24 @@ class JunkJudge:
             self.idle_sequence()
         
     def idle_sequence(self):
+        print("IDLE sequence \n")
         self.clear_all()
         self.is_item = False
-        print("idle sequence")
         self.state = State.IDLE
         self.lcd.display("#   Open me!   #")
         self.led_green.on()
         
     def open_sequence(self):
+        print("OPEN sequence \n")
         self.clear_all()
-        self.led_green.on()
+        self.is_item = False
+        self.state = State.IDLE
         self.lcd.display("# Insert Trash #", 1)
+        self.led_green.on()
         
     def active_sequence(self):
+        print("ACTIVE sequence \n")
+        
         self.clear_all()
         self.state = State.ACTIVE
         self.led_red.on()
@@ -113,6 +119,8 @@ class JunkJudge:
         self.success_sequence()
         
     def success_sequence(self):
+        print("SUCCESS sequence \n")
+        
         self.clear_all()
         self.led_green.on()
         self.lcd.display("Thanks for saving", 1)
