@@ -55,7 +55,10 @@ class JunkJudge:
                 
         self.lcd.display("Ready to go!")
         time.sleep(1)
-        self.idle_sequence()
+        if self.trapdoor_open.is_pressed():
+            self.open_sequence()
+        else:
+            self.idle_sequence()
         
     def idle_sequence(self):
         self.clear_all()
@@ -115,7 +118,10 @@ class JunkJudge:
         self.lcd.display("Thanks for saving", 1)
         self.lcd.display("the planet :)", 2)
         time.sleep(2)
-        self.idle_sequence()
+        if self.trapdoor_open.is_pressed():
+            self.open_sequence()
+        else:
+            self.idle_sequence()
         
     def failure_sequence(self):
         self.clear_all()
