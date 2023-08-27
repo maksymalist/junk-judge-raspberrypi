@@ -107,6 +107,8 @@ class JunkJudge:
         ## move motor ##
         self.lcd.display_progress(75, "Sorting...")
         
+        # add motor code here
+        
         print("*motor noises*")
         print("*motor noises*")
         print("*motor noises*")
