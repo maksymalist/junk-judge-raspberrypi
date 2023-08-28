@@ -145,9 +145,9 @@ class JunkJudge:
         
     def motor_test(self):
         #define GPIO pins
-        direction= 31 # Direction (DIR) GPIO Pin
-        step = 29 # Step GPIO Pin
-        EN_pin = 33 # enable pin (LOW to enable)
+        direction= 6 # Direction (DIR) GPIO Pin
+        step = 5 # Step GPIO Pin
+        EN_pin = 13 # enable pin (LOW to enable)
 
         # Declare a instance of class pass GPIO pins numbers and the motor type
         mymotortest = RpiMotorLib.A4988Nema(direction, step, (21,21,21), "DRV8825")
