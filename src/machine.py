@@ -170,8 +170,10 @@ class JunkJudge:
             time.sleep(delay)
             GPIO.output(STEP, GPIO.LOW)
             time.sleep(delay)
-
+        
+        print("ended")
         GPIO.cleanup()
+        print("post scriptum")
         
         
     # def turn_off(self):
