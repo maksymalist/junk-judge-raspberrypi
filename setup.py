@@ -35,7 +35,7 @@ if __name__ == "__main__":
         
         camera_module = CameraModule(camera, (500, 500), 50)
         lcd_module = LcdModule(screen)
-        stepper_motor_module = SMotorModule((29,31,33,35), 0.002)
+        stepper_motor_module = None #SMotorModule(22, 23, 24, (21,21,21))
         
         led_red = LED(38)
         led_green = LED(40)
@@ -62,7 +62,8 @@ if __name__ == "__main__":
             )
         
         machine.setup()
-        machine.init_sequence()
+        machine.motor_test()
+        # machine.init_sequence()
         
         atexit.register(machine.clear_all)
         # atexit.register(machine.turn_off)
