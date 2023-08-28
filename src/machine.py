@@ -8,7 +8,6 @@ import time
 import sys
 
 import RPi.GPIO as GPIO
-from RpiMotorLib import RpiMotorLib
 from utils.states import State
 
 
@@ -144,28 +143,35 @@ class JunkJudge:
         self.init_sequence()
         
     def motor_test(self):
-        #define GPIO pins
-        direction= 6 # Direction (DIR) GPIO Pin
-        step = 5 # Step GPIO Pin
-        EN_pin = 13 # enable pin (LOW to enable)
+        DIR = 31   # Direction GPIO Pin
+        STEP = 29  # Step GPIO Pin
+        CW = 1     # Clockwise Rotation
+        CCW = 0    # Counterclockwise Rotation
+        SPR = 48   # Steps per Revolution (360 / 7.5)
 
-        # Declare a instance of class pass GPIO pins numbers and the motor type
-        mymotortest = RpiMotorLib.A4988Nema(direction, step, (21,21,21), "DRV8825")
-        GPIO.setup(EN_pin,GPIO.OUT) # set enable pin as output
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(DIR, GPIO.OUT)
+        GPIO.setup(STEP, GPIO.OUT)
+        GPIO.output(DIR, CW)
 
-        ###########################
-        # Actual motor control
-        ###########################
-        #
-        GPIO.output(EN_pin,GPIO.LOW) # pull enable to low to enable motor
-        mymotortest.motor_go(False, # True=Clockwise, False=Counter-Clockwise
-                            "Full" , # Step type (Full,Half,1/4,1/8,1/16,1/32)
-                            200, # number of steps
-                            .0005, # step delay [sec]
-                            False, # True = print verbose output 
-                            .05) # initial delay [sec]
+        step_count = SPR
+        delay = .0208
 
-        GPIO.cleanup() # clear GPIO allocations after run
+        for x in range(step_count):
+            GPIO.output(STEP, GPIO.HIGH)
+            time.sleep(delay)
+            GPIO.output(STEP, GPIO.LOW)
+            time.sleep(delay)
+
+        time.sleep(.5)
+        GPIO.output(DIR, CCW)
+        for x in range(step_count):
+            GPIO.output(STEP, GPIO.HIGH)
+            time.sleep(delay)
+            GPIO.output(STEP, GPIO.LOW)
+            time.sleep(delay)
+
+        GPIO.cleanup()
         
         
     # def turn_off(self):
