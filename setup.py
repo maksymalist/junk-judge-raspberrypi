@@ -68,8 +68,8 @@ if __name__ == "__main__":
         atexit.register(machine.clear_all)
         # atexit.register(machine.turn_off)
         
-        while True:
-            machine.on_update()
+        # while True:
+        #     machine.on_update()
         
 
     except KeyboardInterrupt:
