@@ -143,8 +143,8 @@ class JunkJudge:
         self.init_sequence()
         
     def motor_test(self):
-        DIR = 31   # Direction GPIO Pin
-        STEP = 29  # Step GPIO Pin
+        DIR = 6   # Direction GPIO Pin
+        STEP = 5  # Step GPIO Pin
         CW = 1     # Clockwise Rotation
         CCW = 0    # Counterclockwise Rotation
         SPR = 48   # Steps per Revolution (360 / 7.5)
