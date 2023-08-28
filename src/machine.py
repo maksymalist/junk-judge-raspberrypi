@@ -145,8 +145,8 @@ class JunkJudge:
         
     def motor_test(self):
         #define GPIO pins
-        direction= 22 # Direction (DIR) GPIO Pin
-        step = 31 # Step GPIO Pin
+        direction= 31 # Direction (DIR) GPIO Pin
+        step = 29 # Step GPIO Pin
         EN_pin = 33 # enable pin (LOW to enable)
 
         # Declare a instance of class pass GPIO pins numbers and the motor type
