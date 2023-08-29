@@ -10,7 +10,7 @@ class Rotation(Enum):
         return self.value
 
 class NMotor:
-    def __init__(self, dir, step_pin, spr):
+    def __init__(self, dir, step_pin):
         self.DIR = dir # Direction GPIO Pin
         self.STEP = step_pin # Step GPIO Pin
         self.SPR = 48 # Steps per Revolution (360 / 7.5)
