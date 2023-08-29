@@ -15,11 +15,10 @@ class NMotor:
         self.STEP = step_pin # Step GPIO Pin
         self.SPR = 200 # Steps per Revolution (360 / 7.5)
         self.rotation = Rotation.CW # Clockwise Rotation
-        self.delay = .00104
+        self.delay = .0208
         
         GPIO.setup(self.DIR, GPIO.OUT)
         GPIO.setup(self.STEP, GPIO.OUT)
-        GPIO.output(self.DIR, self.rotation.value)
         
     def rotate_cw(self, step_count):
         self.rotation = Rotation.CW
