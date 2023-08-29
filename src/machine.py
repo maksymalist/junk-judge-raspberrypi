@@ -142,8 +142,8 @@ class JunkJudge:
         self.init_sequence()
         
     def motor_sequence(self):
-        self.conveyor_1.rotate_cw(100)
-        self.conveyor_1.rotate_ccw(100)
+        self.conveyor_1.rotate_cw(1000)
+        ##self.conveyor_1.rotate_ccw(100)
         
         
     # def turn_off(self):
