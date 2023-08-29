@@ -13,7 +13,7 @@ class NMotor:
     def __init__(self, dir, step_pin):
         self.DIR = dir # Direction GPIO Pin
         self.STEP = step_pin # Step GPIO Pin
-        self.SPR = 48 # Steps per Revolution (360 / 7.5)
+        self.SPR = 200 # Steps per Revolution (360 / 7.5)
         self.rotation = Rotation.CW # Clockwise Rotation
         self.delay = .0104
         
