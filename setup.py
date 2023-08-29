@@ -80,9 +80,9 @@ if __name__ == "__main__":
         machine.clear_all()
         sys.exit()
         
-    except Exception as e:
-        print("failed to do something", e)
-        machine.failure_sequence()
+    # except Exception as e:
+    #     print("failed to do something", e)
+    #     machine.failure_sequence()
 
 
 
