@@ -3,7 +3,7 @@
 # from utils.model import predict_type
 from picamera import PiCamera
 from utils.lcd_display import LcdModule
-from utils.stepper_motor import SMotorModule
+from utils.nema_motor import NMotor
 from utils.camera import CameraModule
 from utils.led import LED
 from utils.button import Button
@@ -34,8 +34,9 @@ if __name__ == "__main__":
         screen = drivers.Lcd()
         
         camera_module = CameraModule(camera, (500, 500), 50)
-        lcd_module = LcdModule(screen)
-        stepper_motor_module = SMotorModule((29,31,33,35), 0.002)
+        lcd_module = LcdModule(screen)  
+        conveyor_module_1 = NMotor(31, 29) # BCM 6, 5 respectively
+        
         
         led_red = LED(38)
         led_green = LED(40)
@@ -48,9 +49,11 @@ if __name__ == "__main__":
         biologics_override = Button(36)
         
         
+        
+        
         machine = JunkJudge(
             lcd_module, 
-            stepper_motor_module, 
+            conveyor_module_1, 
             camera_module, 
             led_red, 
             led_green, 
@@ -62,7 +65,8 @@ if __name__ == "__main__":
             )
         
         machine.setup()
-        machine.init_sequence()
+        machine.motor_sequence()
+        # machine.init_sequence()
         
         atexit.register(machine.clear_all)
         # atexit.register(machine.turn_off)
