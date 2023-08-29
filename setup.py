@@ -21,7 +21,7 @@ if __name__ == "__main__":
     try:
         
         GPIO.setwarnings(False)
-        GPIO.setmode(GPIO.BCM)
+        GPIO.setmode(GPIO.BOARD)
         
         # Initialize Firebase Admin SDK
         cred = credentials.Certificate("credentials.json")
@@ -35,7 +35,7 @@ if __name__ == "__main__":
         
         camera_module = CameraModule(camera, (500, 500), 50)
         lcd_module = LcdModule(screen)
-        stepper_motor_module = None #SMotorModule(22, 23, 24, (21,21,21))
+        stepper_motor_module = SMotorModule((29,31,33,35), 0.002)
         
         led_red = LED(38)
         led_green = LED(40)
@@ -62,14 +62,13 @@ if __name__ == "__main__":
             )
         
         machine.setup()
-        machine.motor_test()
-        # machine.init_sequence()
+        machine.init_sequence()
         
         atexit.register(machine.clear_all)
         # atexit.register(machine.turn_off)
         
-        # while True:
-        #     machine.on_update()
+        while True:
+            machine.on_update()
         
 
     except KeyboardInterrupt:
@@ -79,7 +78,7 @@ if __name__ == "__main__":
         
     except Exception as e:
         print("failed to do something", e)
-        #machine.failure_sequence()
+        machine.failure_sequence()
 
 
 

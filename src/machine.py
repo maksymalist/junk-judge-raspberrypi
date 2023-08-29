@@ -10,7 +10,6 @@ import sys
 import RPi.GPIO as GPIO
 from utils.states import State
 
-
 class JunkJudge:
     def __init__(self, lcd, motor, camera, led_red, led_green, trapdoor_open, trapdoor_close, recycle_override, trash_override, biological_override) -> None:
         self.version = "Beta v1.0"
@@ -141,39 +140,6 @@ class JunkJudge:
         self.lcd.display("wrong :(", 2)
         time.sleep(2)
         self.init_sequence()
-        
-    def motor_test(self):
-        DIR = 6   # Direction GPIO Pin
-        STEP = 5  # Step GPIO Pin
-        CW = 1     # Clockwise Rotation
-        CCW = 0    # Counterclockwise Rotation
-        SPR = 48   # Steps per Revolution (360 / 7.5)
-
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(DIR, GPIO.OUT)
-        GPIO.setup(STEP, GPIO.OUT)
-        GPIO.output(DIR, CW)
-
-        step_count = SPR
-        delay = .0208
-
-        for x in range(step_count):
-            GPIO.output(STEP, GPIO.HIGH)
-            time.sleep(delay)
-            GPIO.output(STEP, GPIO.LOW)
-            time.sleep(delay)
-
-        time.sleep(.5)
-        GPIO.output(DIR, CCW)
-        for x in range(step_count):
-            GPIO.output(STEP, GPIO.HIGH)
-            time.sleep(delay)
-            GPIO.output(STEP, GPIO.LOW)
-            time.sleep(delay)
-        
-        print("ended")
-        GPIO.cleanup()
-        print("post scriptum")
         
         
     # def turn_off(self):
