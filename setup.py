@@ -62,8 +62,7 @@ if __name__ == "__main__":
             )
         
         machine.setup()
-        machine.motor_test()
-        # machine.init_sequence()
+        machine.init_sequence()
         
         atexit.register(machine.clear_all)
         # atexit.register(machine.turn_off)
