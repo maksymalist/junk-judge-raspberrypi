@@ -73,15 +73,10 @@ class JunkJudge:
     def open_sequence(self):
         print("OPEN sequence \n")
         self.clear_all()
-        print("made it 1")
         self.is_item = False
-        print("made it 2")
         self.state = State.IDLE
-        print("made it 3")
         self.lcd.display("# Insert Trash #", 1)
-        print("made it 4")
         self.led_green.on()
-        print("made it 5")
         
     def active_sequence(self):
         print("ACTIVE sequence \n")
