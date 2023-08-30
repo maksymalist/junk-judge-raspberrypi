@@ -21,7 +21,7 @@ if __name__ == "__main__":
     try:
         
         GPIO.setwarnings(False)
-        GPIO.setmode(GPIO.BCM)
+        GPIO.setmode(GPIO.BOARD)
         
         # Initialize Firebase Admin SDK
         cred = credentials.Certificate("credentials.json")
