@@ -16,5 +16,4 @@ class LanguageDictionary:
         return self.dictionaries[key]
 
 language_dict = LanguageDictionary(EN=ENGLISH, FR=FRENCH)
-print(language_dict)
 

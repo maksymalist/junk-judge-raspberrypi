@@ -45,7 +45,7 @@ if __name__ == "__main__":
         
         
         machine = JunkJudge(
-            language=Language.EN,
+            language=Language.FR,
             lcd=lcd_module, 
             conveyor_1=conveyor_module_1, 
             camera=camera_module, 
