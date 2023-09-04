@@ -22,19 +22,19 @@ ENGLISH = {
 
 FRENCH = {
     "init": "Initialisation...",
-    "ready": "Prêt à partir !",
-    "idle": "#   Ouvrez-moi !   #",
-    "opened": "# Insérer Déchet #",
+    "ready": "Pret a partir !",
+    "idle": "#  Ouvrez-moi  #",
+    "opened": "# Inserer Dechet #",
     "active": {
         "scan": "Balayage...",
         "prediction": "Identification...",
         "save": "Enregistrement...",
         "sorting": "Classement...",
-        "done": "Terminé !",
+        "done": "Termine !",
     },
     "success": {
         "top": "Merci d'avoir",
-        "bottom": "sauvé la planète :)",
+        "bottom": "sauve la planete :)",
     },
     "failure": {
         "top": "Il eut un leger",
