@@ -11,7 +11,7 @@ class JunkJudge:
     def __init__(self, language=Language.EN, lcd=None, conveyor_1=None, camera=None, led_red=None, led_green=None, trapdoor_open=None, trapdoor_close=None) -> None:
         self.version = "Beta v1.0"
         self.language = language
-        self.translations = language_dict[self.language]
+        self.translations = language_dict[self.language.value]
         self.judge_id = 1
         self.lcd = lcd
         self.conveyor_1 = conveyor_1
