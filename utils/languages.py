@@ -12,5 +12,5 @@ class LanguageDictionary:
     def __getitem__(self, key):
         return self.dictionaries[key]
 
-language_dict = LanguageDictionary(EN=ENGLISH, FR=FRENCH)
+language_dict = LanguageDictionary(ENGLISH, FRENCH)
 

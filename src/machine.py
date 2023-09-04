@@ -120,8 +120,8 @@ class JunkJudge:
         
         self.clear_all()
         self.led_green.on()
-        self.lcd.display("Thanks for saving", 1)
-        self.lcd.display("the planet :)", 2)
+        self.lcd.display(self.translations["success"]["top"], 1)
+        self.lcd.display(self.translations["success"]["bottom"], 2)
         time.sleep(2)
         if self.trapdoor_open.is_pressed():
             self.open_sequence()
@@ -131,8 +131,8 @@ class JunkJudge:
     def failure_sequence(self):
         self.clear_all()
         self.led_red.on()
-        self.lcd.display("Something went", 1)
-        self.lcd.display("wrong :(", 2)
+        self.lcd.display(self.translations["failure"]["top"], 1)
+        self.lcd.display(self.translations["failure"]["bottom"], 2)
         time.sleep(2)
         self.init_sequence()
         
