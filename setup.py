@@ -16,8 +16,6 @@ import atexit
 from utils.languages import Language
 
 if __name__ == "__main__":
-    
-    machine = None
 
     try:
         
