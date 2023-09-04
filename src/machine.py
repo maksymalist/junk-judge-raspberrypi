@@ -10,14 +10,13 @@ import sys
 import RPi.GPIO as GPIO
 from utils.states import State
 
-
 class JunkJudge:
-    def __init__(self, lcd, motor, camera, led_red, led_green, trapdoor_open, trapdoor_close, recycle_override, trash_override, biological_override) -> None:
+    def __init__(self, lcd, conveyor_1, camera, led_red, led_green, trapdoor_open, trapdoor_close, recycle_override, trash_override, biological_override) -> None:
         self.version = "Beta v1.0"
         self.judge_id = 1
         self.loop_count = 0
         self.lcd = lcd
-        self.motor = motor
+        self.conveyor_1 = conveyor_1
         self.camera = camera
         self.state = State.INIT
         self.led_red = led_red
@@ -141,6 +140,11 @@ class JunkJudge:
         self.lcd.display("wrong :(", 2)
         time.sleep(2)
         self.init_sequence()
+        
+    def motor_sequence(self):
+        self.conveyor_1.rotate_ccw(1000)
+        ##self.conveyor_1.rotate_ccw(100)
+        
         
     # def turn_off(self):
     #     update_judge_status(
