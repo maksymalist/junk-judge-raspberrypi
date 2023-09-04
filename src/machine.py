@@ -1,20 +1,18 @@
 from utils.firebase import upload_file_to_firebase
-from utils.notion import create_image_entry, update_judge_status
+from utils.notion import create_image_entry
 from utils.model import predict_type
 from utils.confusion import get_confusion_level
 
-import drivers
 import time
-import sys
-
-import RPi.GPIO as GPIO
 from utils.states import State
+from utils.languages import Language, language_dict
 
 class JunkJudge:
-    def __init__(self, lcd, conveyor_1, camera, led_red, led_green, trapdoor_open, trapdoor_close, recycle_override, trash_override, biological_override) -> None:
+    def __init__(self, language=Language.EN, lcd=None, conveyor_1=None, camera=None, led_red=None, led_green=None, trapdoor_open=None, trapdoor_close=None) -> None:
         self.version = "Beta v1.0"
+        self.language = language
+        self.translations = language_dict[self.language]
         self.judge_id = 1
-        self.loop_count = 0
         self.lcd = lcd
         self.conveyor_1 = conveyor_1
         self.camera = camera
@@ -23,9 +21,6 @@ class JunkJudge:
         self.led_green = led_green
         self.trapdoor_open = trapdoor_open
         self.trapdoor_close = trapdoor_close
-        self.recycle_override = recycle_override
-        self.trash_override = trash_override
-        self.biologics_override = biological_override
         self.is_item = False
 
         
@@ -46,7 +41,7 @@ class JunkJudge:
         self.clear_all()
         self.state = State.INIT
          
-        self.lcd.display("Initializing...")
+        self.lcd.display(self.translations["init"])
  
         for _ in range(3):
             self.led_green.on()
@@ -54,7 +49,7 @@ class JunkJudge:
             self.led_green.off()
             time.sleep(0.5)
                 
-        self.lcd.display("Ready to go!")
+        self.lcd.display(self.translations["ready"])
         time.sleep(1)
         if self.trapdoor_open.is_pressed():
             self.open_sequence()
@@ -66,7 +61,7 @@ class JunkJudge:
         self.clear_all()
         self.is_item = False
         self.state = State.IDLE
-        self.lcd.display("#   Open me!   #")
+        self.lcd.display(self.translations["idle"])
         self.led_green.on()
         
     def open_sequence(self):
@@ -74,7 +69,7 @@ class JunkJudge:
         self.clear_all()
         self.is_item = False
         self.state = State.IDLE
-        self.lcd.display("# Insert Trash #", 1)
+        self.lcd.display(self.translations["opened"], 1)
         self.led_green.on()
         
     def active_sequence(self):
@@ -86,11 +81,11 @@ class JunkJudge:
         file_path = 'images/test.jpg'
         
         ## take picture ##
-        self.lcd.display_progress(0, "Scanning...")
+        self.lcd.display_progress(0, self.translations["active"]["scan"])
         self.camera.take_picture(file_path)
         
         ## predict type ##
-        self.lcd.display_progress(25, "Identifying type...")
+        self.lcd.display_progress(25, self.translations["active"]["prediction"])
         print("Predicting type...")
         
         data = predict_type(file_path)
@@ -100,12 +95,12 @@ class JunkJudge:
         confusion = get_confusion_level(data)
         
         ## upload to firebase ##
-        self.lcd.display_progress(50, "Saving results...")
+        self.lcd.display_progress(50, self.translations["active"]["save"])
         key, file_size, file_type, file_name, file_url = upload_file_to_firebase(file_path, prediction)
         create_image_entry(file_url, prediction, file_type, file_size, key)
         
         ## move motor ##
-        self.lcd.display_progress(75, "Sorting...")
+        self.lcd.display_progress(75, self.translations["active"]["sorting"])
         
         # add motor code here
         
@@ -116,7 +111,7 @@ class JunkJudge:
         time.sleep(1)
         
         ## switch to success mode ##
-        self.lcd.display_progress(100, "Done !")
+        self.lcd.display_progress(100, self.translations["active"]["done"])
         time.sleep(1)
         self.success_sequence()
         
@@ -160,7 +155,6 @@ class JunkJudge:
     def on_update(self):  
         
         # # Status update
-        # if self.loop_count % 100 == 0:
         #     update_judge_status(
         #         self.judge_id, 
         #         str(self.trapdoor_open.is_pressed()),
@@ -177,7 +171,5 @@ class JunkJudge:
                 self.is_item = True
             elif self.trapdoor_close.is_pressed() and self.is_item:
                 self.active_sequence()
-                
-        self.loop_count += 1
 
             

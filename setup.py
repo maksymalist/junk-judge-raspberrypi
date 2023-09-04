@@ -13,6 +13,8 @@ import sys
 import RPi.GPIO as GPIO
 import atexit
 
+from utils.languages import Language
+
 if __name__ == "__main__":
 
     try:
@@ -41,29 +43,21 @@ if __name__ == "__main__":
         trapdoor_open  = Button(16)
         trapdoor_close = Button(18)
         
-        recycle_override = Button(22)
-        trash_override = Button(32)
-        biologics_override = Button(36)
-        
-        
-        
         
         machine = JunkJudge(
-            lcd_module, 
-            conveyor_module_1, 
-            camera_module, 
-            led_red, 
-            led_green, 
-            trapdoor_open, 
-            trapdoor_close,
-            recycle_override, 
-            trash_override, 
-            biologics_override
-            )
+            language=Language.EN,
+            lcd=lcd_module, 
+            conveyor_1=conveyor_module_1, 
+            camera=camera_module, 
+            led_red=led_red, 
+            led_green=led_green, 
+            trapdoor_open=trapdoor_open, 
+            trapdoor_close=trapdoor_close,
+        )
         
         machine.setup()
-        machine.motor_sequence()
-        # machine.init_sequence()
+        # machine.motor_sequence() # <--- for motor debugging
+        machine.init_sequence()
         
         atexit.register(machine.clear_all)
         # atexit.register(machine.turn_off)
@@ -77,9 +71,9 @@ if __name__ == "__main__":
         machine.clear_all()
         sys.exit()
         
-    # except Exception as e:
-    #     print("failed to do something", e)
-    #     machine.failure_sequence() 
+    except Exception as e:
+        print("failed to do something", e)
+        machine.failure_sequence() 
 
 
 
