@@ -1,9 +1,6 @@
-# from utils.firebase import upload_file_to_firebase
-# from utils.notion import create_notion_entry
-# from utils.model import predict_type
 from picamera import PiCamera
 from utils.lcd_display import LcdModule
-from utils.stepper_motor import SMotorModule
+from utils.nema_motor import NMotor
 from utils.camera import CameraModule
 from utils.led import LED
 from utils.button import Button
@@ -34,8 +31,9 @@ if __name__ == "__main__":
         screen = drivers.Lcd()
         
         camera_module = CameraModule(camera, (500, 500), 50)
-        lcd_module = LcdModule(screen)
-        stepper_motor_module = None #SMotorModule(22, 23, 24, (21,21,21))
+        lcd_module = LcdModule(screen)  
+        conveyor_module_1 = NMotor(31, 29) # BCM 6, 5 respectively
+        
         
         led_red = LED(38)
         led_green = LED(40)
@@ -48,9 +46,11 @@ if __name__ == "__main__":
         biologics_override = Button(36)
         
         
+        
+        
         machine = JunkJudge(
             lcd_module, 
-            stepper_motor_module, 
+            conveyor_module_1, 
             camera_module, 
             led_red, 
             led_green, 
@@ -62,7 +62,8 @@ if __name__ == "__main__":
             )
         
         machine.setup()
-        machine.init_sequence()
+        machine.motor_sequence()
+        # machine.init_sequence()
         
         atexit.register(machine.clear_all)
         # atexit.register(machine.turn_off)
@@ -76,26 +77,9 @@ if __name__ == "__main__":
         machine.clear_all()
         sys.exit()
         
-    except Exception as e:
-        print("failed to do something", e)
-        machine.failure_sequence()
+    # except Exception as e:
+    #     print("failed to do something", e)
+    #     machine.failure_sequence() 
 
 
 
-
-
-    # file_path = 'images/test.jpg'
-    # prediction = predict_type(file_path)
-    # key, file_size, file_type, file_name, file_url = upload_file_to_firebase(file_path, prediction)
-
-    # print('File uploaded successfully.')
-    # print('File Size:', file_size)
-    # print('File Type:', file_type)
-    # print('File Name:', file_name)
-    # print('File URL:', file_url)
-    
-    #print(create_notion_entry(file_url, prediction, file_type, file_size, key))
-
-    
-    # on start
-    
