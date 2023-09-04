@@ -16,6 +16,8 @@ import atexit
 from utils.languages import Language
 
 if __name__ == "__main__":
+    
+    machine = None
 
     try:
         
@@ -64,13 +66,12 @@ if __name__ == "__main__":
         
         while True:
             machine.on_update()
-        
-
+            
     except KeyboardInterrupt:
-        GPIO.cleanup()
-        machine.clear_all()
-        sys.exit()
-        
+            GPIO.cleanup()
+            machine.clear_all()
+            sys.exit()
+            
     except Exception as e:
         print("failed to do something", e)
         machine.failure_sequence() 
