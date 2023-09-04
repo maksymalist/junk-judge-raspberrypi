@@ -1,5 +1,5 @@
 from enum import Enum
-from translations import ENGLISH, FRENCH
+from utils.translations import ENGLISH, FRENCH
 
 class Language(Enum):
     EN = 'EN'
