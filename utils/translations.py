@@ -24,7 +24,7 @@ FRENCH = {
     "init": "Initialisation...",
     "ready": "Pret a partir !",
     "idle": "#  Ouvrez-moi  #",
-    "opened": "# Inserer Dechet #",
+    "opened": " Inserer Dechet ",
     "active": {
         "scan": "Balayage...",
         "prediction": "Identification...",

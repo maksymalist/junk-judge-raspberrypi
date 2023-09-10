@@ -67,12 +67,12 @@ if __name__ == "__main__":
             
     except KeyboardInterrupt:
             GPIO.cleanup()
-            machine.clear_all()
             sys.exit()
             
     except Exception as e:
         print("failed to do something", e)
-        machine.failure_sequence() 
+        GPIO.cleanup()
+        sys.exit()
 
 
 
