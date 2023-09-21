@@ -29,7 +29,7 @@ if __name__ == "__main__":
         })
 
         
-        camera = PiCamera()
+        camera = None
         screen = drivers.Lcd()
         
         camera_module = CameraModule(camera, (500, 500), 50)
