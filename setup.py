@@ -29,6 +29,7 @@ if __name__ == "__main__":
         })
 
         
+        camera = PiCamera()
         camera = None
         screen = drivers.Lcd()
         
@@ -73,6 +74,3 @@ if __name__ == "__main__":
         print("failed to do something", e)
         GPIO.cleanup()
         sys.exit()
-
-
-
