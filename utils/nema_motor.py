@@ -7,9 +7,9 @@ class Rotation(IntEnum):
     CCW = 1
 
 class NMotor:
-    def __init__(self, dir, step_pin, en_pin):
-        self.DIR = dir # Direction GPIO Pin
+    def __init__(self, step_pin, dir, en_pin):
         self.STEP = step_pin # Step GPIO Pin
+        self.DIR = dir # Direction GPIO Pin
         self.EN = en_pin # Enable GPIO Pin
         self.SPR = 200 # Steps per Revolution (360 / 7.5)
         self.delay = .0045
