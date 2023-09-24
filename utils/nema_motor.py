@@ -12,7 +12,7 @@ class NMotor:
         self.STEP = step_pin # Step GPIO Pin
         self.EN = enable_pin
         self.SPR = 200 # Steps per Revolution (360 / 7.5)
-        self.delay = .0104
+        self.delay = .0020
         self.enabled = True
         
         GPIO.setup(self.DIR, GPIO.OUT)
