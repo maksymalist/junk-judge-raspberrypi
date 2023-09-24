@@ -17,7 +17,7 @@ class NMotor:
         GPIO.setup(self.DIR, GPIO.OUT)
         GPIO.setup(self.STEP, GPIO.OUT)
         GPIO.setup(self.EN, GPIO.OUT)
-        GPIO.output(self.EN, GPIO.LOW)
+        GPIO.output(self.EN, GPIO.HIGH)
         
     def rotate_cw(self, step_count):
         GPIO.output(self.DIR, Rotation.CW)
