@@ -7,13 +7,11 @@ class Rotation(IntEnum):
     CCW = 0
 
 class NMotor:
-    def __init__(self, dir, step_pin, enable_pin):
+    def __init__(self, dir, step_pin):
         self.DIR = dir # Direction GPIO Pin
         self.STEP = step_pin # Step GPIO Pin
-        self.EN = enable_pin
         self.SPR = 200 # Steps per Revolution (360 / 7.5)
-        self.delay = .0020
-        self.enabled = True
+        self.delay = .0045
         
         GPIO.setup(self.DIR, GPIO.OUT)
         GPIO.setup(self.STEP, GPIO.OUT)
@@ -35,11 +33,3 @@ class NMotor:
             time.sleep(self.delay)
             GPIO.output(self.STEP, GPIO.LOW)
             time.sleep(self.delay)
-            
-    def disable(self):
-        GPIO.output(self.EN, GPIO.HIGH)
-        self.enabled = False
-        
-    def enable(self):
-        GPIO.output(self.EN, GPIO.LOW)
-        self.enabled = True
