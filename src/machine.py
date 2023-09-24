@@ -140,7 +140,7 @@ class JunkJudge:
         self.conveyor_1.rotate_ccw(1000)
         print("motor sequence xxx")
         self.conveyor_1.rotate_cw(1000)
-        self.conveyor_1.disable()
+        self.conveyor_1.enable()
         print("motor sequence disabled")
         
         
