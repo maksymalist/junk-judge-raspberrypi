@@ -137,10 +137,12 @@ class JunkJudge:
         self.init_sequence()
         
     def motor_sequence(self):
+        print("rotating counter clockwise")
         self.conveyor_1.rotate_ccw(1000)
         print("motor sequence xxx")
+        print("rotating clockwise")
         self.conveyor_1.rotate_cw(1000)
-        self.conveyor_1.enable()
+        self.conveyor_1.disable()
         print("motor sequence disabled")
         
         

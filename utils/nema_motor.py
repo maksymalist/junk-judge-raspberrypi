@@ -22,9 +22,9 @@ class NMotor:
     def rotate_cw(self, step_count):
         GPIO.output(self.DIR, Rotation.CW)
         for x in range(step_count):
-            GPIO.output(self.STEP, GPIO.HIGH)
-            time.sleep(self.delay)
             GPIO.output(self.STEP, GPIO.LOW)
+            time.sleep(self.delay)
+            GPIO.output(self.STEP, GPIO.HIGH)
             time.sleep(self.delay)
             
     def rotate_ccw(self, step_count):
