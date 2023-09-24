@@ -3,8 +3,8 @@ import RPi.GPIO as GPIO
 import time
 
 class Rotation(IntEnum):
-    CW = 1
-    CCW = 0
+    CW = 0
+    CCW = 1
 
 class NMotor:
     def __init__(self, dir, step_pin, en_pin):
@@ -21,7 +21,7 @@ class NMotor:
         GPIO.output(self.EN, GPIO.HIGH) # HIGH = enabled, LOW = disabled
         
     def rotate_cw(self, step_count):
-        GPIO.output(self.DIR, GPIO.HIGH)
+        GPIO.output(self.DIR, GPIO.LOW)
         for x in range(step_count):
             GPIO.output(self.STEP, GPIO.HIGH)
             time.sleep(self.delay)
@@ -29,7 +29,7 @@ class NMotor:
             time.sleep(self.delay)
             
     def rotate_ccw(self, step_count):
-        GPIO.output(self.DIR, GPIO.LOW)
+        GPIO.output(self.DIR, GPIO.HIGH)
         for x in range(step_count):
             GPIO.output(self.STEP, GPIO.HIGH)
             time.sleep(self.delay)
