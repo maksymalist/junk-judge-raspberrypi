@@ -21,16 +21,15 @@ class NMotor:
         GPIO.output(self.EN, GPIO.HIGH) # HIGH = enabled, LOW = disabled
         
     def rotate_cw(self, step_count):
-        GPIO.output(self.DIR, Rotation.CW)
+        GPIO.output(self.DIR, GPIO.HIGH)
         for x in range(step_count):
-            GPIO.output(self.STEP, GPIO.LOW)
-            time.sleep(self.delay)
             GPIO.output(self.STEP, GPIO.HIGH)
+            time.sleep(self.delay)
+            GPIO.output(self.STEP, GPIO.LOW)
             time.sleep(self.delay)
             
     def rotate_ccw(self, step_count):
-        self.rotation = Rotation.CCW
-        GPIO.output(self.DIR, Rotation.CW)
+        GPIO.output(self.DIR, GPIO.LOW)
         for x in range(step_count):
             GPIO.output(self.STEP, GPIO.HIGH)
             time.sleep(self.delay)
