@@ -14,13 +14,16 @@ class NMotor:
         self.SPR = 200 # Steps per Revolution (360 / 7.5)
         self.delay = .0015
         self.enabled = True
+        self.rotation = Rotation.CW
         
         GPIO.setup(self.DIR, GPIO.OUT)
         GPIO.setup(self.STEP, GPIO.OUT)
         GPIO.setup(self.EN, GPIO.OUT)
+        GPIO.output(self.DIR, GPIO.LOW) # LOW = clockwise, HIGH = counter-clockwise
         GPIO.output(self.EN, GPIO.HIGH) # HIGH = enabled, LOW = disabled
         
     def rotate_cw(self, step_count):
+        self.rotation = Rotation.CW
         GPIO.output(self.DIR, GPIO.LOW)
         for x in range(step_count):
             GPIO.output(self.STEP, GPIO.HIGH)
@@ -29,6 +32,7 @@ class NMotor:
             time.sleep(self.delay)
             
     def rotate_ccw(self, step_count):
+        self.rotation = Rotation.CCW
         GPIO.output(self.DIR, GPIO.HIGH)
         for x in range(step_count):
             GPIO.output(self.STEP, GPIO.HIGH)
