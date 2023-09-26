@@ -5,7 +5,7 @@ from utils.camera import CameraModule
 from utils.led import LED
 from utils.button import Button
 from src.machine import JunkJudge
-
+import time
 import firebase_admin
 from firebase_admin import credentials
 import drivers
@@ -39,7 +39,6 @@ if __name__ == "__main__":
         
         led_red = LED(38)
         led_green = LED(40)
-        led_green.on()
         
         trapdoor_open  = Button(12)
         trapdoor_close = Button(16)
@@ -58,6 +57,8 @@ if __name__ == "__main__":
         
         machine.setup()
         #machine.motor_sequence() # <--- for motor debugging
+        led_green.on()
+        time.sleep(1)
         machine.init_sequence()
         
         atexit.register(machine.clear_all)
