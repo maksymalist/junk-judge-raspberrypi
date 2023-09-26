@@ -58,7 +58,8 @@ if __name__ == "__main__":
         machine.setup()
         #machine.motor_sequence() # <--- for motor debugging
         led_green.on()
-        time.sleep(1)
+        led_red.on()
+        time.sleep(5)
         machine.init_sequence()
         
         atexit.register(machine.clear_all)
