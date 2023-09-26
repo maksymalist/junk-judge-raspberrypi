@@ -177,9 +177,11 @@ class JunkJudge:
         # Button sequence
         if self.state == State.IDLE:
             if self.trapdoor_open.is_pressed() and not self.is_item:
-                self.open_sequence()
+                print("trapdoor open")
+                #self.open_sequence()
                 self.is_item = True
             elif self.trapdoor_close.is_pressed() and self.is_item:
+                print("trapdoor close")
                 self.active_sequence()
 
             
