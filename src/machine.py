@@ -163,10 +163,6 @@ class JunkJudge:
         
     
     def on_update(self):  
-        if self.trapdoor_open.is_pressed():
-            print("trapdoor open")
-        else:
-            print("trapdoor closed")
         # # Status update
         #     update_judge_status(
         #         self.judge_id, 
