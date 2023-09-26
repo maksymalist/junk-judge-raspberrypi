@@ -163,7 +163,7 @@ class JunkJudge:
         
     
     def on_update(self):  
-        
+        print("on_update")
         # # Status update
         #     update_judge_status(
         #         self.judge_id, 
