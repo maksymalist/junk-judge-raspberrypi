@@ -41,8 +41,8 @@ if __name__ == "__main__":
         led_green = LED(40)
         led_green.on()
         
-        trapdoor_open  = Button(16)
-        trapdoor_close = Button(12)
+        trapdoor_open  = Button(12)
+        trapdoor_close = Button(16)
         
         
         machine = JunkJudge(
