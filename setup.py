@@ -56,8 +56,8 @@ if __name__ == "__main__":
         )
         
         machine.setup()
-        machine.motor_sequence() # <--- for motor debugging
-        #machine.init_sequence()
+        #machine.motor_sequence() # <--- for motor debugging
+        machine.init_sequence()
         
         atexit.register(machine.clear_all)
         # atexit.register(machine.turn_off)
