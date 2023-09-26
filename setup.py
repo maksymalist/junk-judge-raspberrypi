@@ -42,7 +42,7 @@ if __name__ == "__main__":
         led_green.on()
         
         trapdoor_open  = Button(16)
-        trapdoor_close = Button(18)
+        trapdoor_close = Button(12)
         
         
         machine = JunkJudge(
@@ -57,7 +57,7 @@ if __name__ == "__main__":
         )
         
         machine.setup()
-        machine.motor_sequence() # <--- for motor debugging
+        #machine.motor_sequence() # <--- for motor debugging
         ##machine.init_sequence()
         
         atexit.register(machine.clear_all)
