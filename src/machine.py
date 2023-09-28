@@ -8,13 +8,14 @@ from utils.states import State
 from utils.languages import Language, language_dict
 
 class JunkJudge:
-    def __init__(self, language=Language.EN, lcd=None, conveyor_1=None, camera=None, led_red=None, led_green=None, trapdoor_open=None, trapdoor_close=None) -> None:
+    def __init__(self, language=Language.EN, lcd=None, conveyor_1=None, conveyor_2=None, camera=None, led_red=None, led_green=None, trapdoor_open=None, trapdoor_close=None) -> None:
         self.version = "Beta v1.0"
         self.language = language
         self.translations = language_dict[self.language.value]
         self.judge_id = 1
         self.lcd = lcd
         self.conveyor_1 = conveyor_1
+        self.conveyor_2 = conveyor_2
         self.camera = camera
         self.state = State.INIT
         self.led_red = led_red
@@ -138,16 +139,16 @@ class JunkJudge:
         
     def motor_sequence(self):
         print("rotating counter clockwise")
-        self.conveyor_1.rotate_ccw(1000)
+        self.conveyor_2.rotate_ccw(1000)
         print("motor sequence xxx")
-        self.conveyor_1.disable()
+        self.conveyor_2.disable()
         print("rotating clockwise")
-        self.conveyor_1.rotate_cw(1000)
-        self.conveyor_1.enable()
+        self.conveyor_2.rotate_cw(1000)
+        self.conveyor_2.enable()
         time.sleep(3)   
         print("rotating clockwise take 2")
-        self.conveyor_1.rotate_cw(1000)
-        self.conveyor_1.disable()
+        self.conveyor_2.rotate_cw(1000)
+        self.conveyor_2.disable()
         print("motor sequence disabled")
         
         
