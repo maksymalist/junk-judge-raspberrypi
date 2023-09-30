@@ -59,7 +59,7 @@ if __name__ == "__main__":
         led_green.on()
         led_red.on()
         time.sleep(5)
-        #machine.init_sequence()
+        machine.init_sequence()
         
         atexit.register(machine.clear_all)
         # atexit.register(machine.turn_off)
