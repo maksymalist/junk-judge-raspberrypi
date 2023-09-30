@@ -34,7 +34,7 @@ if __name__ == "__main__":
         camera_module = CameraModule(camera, (500, 500), 50)
         lcd_module = LcdModule(screen)  
         conveyor_module_1 = NMotor(29, 31, 33) # BCM 5, 6, 13 respectively
-        conveyor_module_2 = None##NMotor(35, 37, 36) # BCM 19, 26, 16 respectively
+        conveyor_module_2 = NMotor(35, 37, 36) # BCM 19, 26, 16 respectively
         # step, dir, en
         
         led_red = LED(38)
