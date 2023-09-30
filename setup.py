@@ -44,6 +44,7 @@ if __name__ == "__main__":
         trapdoor_open  = Button(12)
         trapdoor_close = Button(16)
         
+        print("making judge")
         
         machine = JunkJudge(
             language=Language.FR,
@@ -56,8 +57,9 @@ if __name__ == "__main__":
             trapdoor_open=trapdoor_open, 
             trapdoor_close=trapdoor_close,
         )
-        
+        print("made judge")
         machine.setup()
+        print("did the setup")
         #machine.motor_sequence() # <--- for motor debugging
         print("truning leds on")
         led_green.on()
