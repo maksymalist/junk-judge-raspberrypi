@@ -27,14 +27,14 @@ class JunkJudge:
         
     def clear_all(self):
         #clear lcd and leds
-        #self.lcd.clear()
+        self.lcd.clear()
         self.led_green.off()
         self.led_red.off()
         
     def setup(self):  
         #setup lcd and leds
         self.clear_all()
-        #self.lcd.setup_custom_characters()
+        self.lcd.setup_custom_characters()
         
 
     def init_sequence(self):
