@@ -34,7 +34,7 @@ class JunkJudge:
     def setup(self):  
         #setup lcd and leds
         self.clear_all()
-        self.lcd.setup_custom_characters()
+        #self.lcd.setup_custom_characters()
         
 
     def init_sequence(self):
