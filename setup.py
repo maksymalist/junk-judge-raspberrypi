@@ -31,6 +31,7 @@ if __name__ == "__main__":
         print("did stuff here")
         
         camera = PiCamera()
+        print("did camera stuff here")
         screen = drivers.Lcd()
         
         print("did more stuff here")
