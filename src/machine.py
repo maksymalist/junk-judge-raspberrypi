@@ -139,16 +139,16 @@ class JunkJudge:
         
     def motor_sequence(self):
         print("rotating counter clockwise")
-        self.conveyor_2.rotate_ccw(1000)
+        self.conveyor_1.rotate_ccw(1000)
         print("motor sequence xxx")
-        self.conveyor_2.disable()
+        self.conveyor_1.disable()
         print("rotating clockwise")
-        self.conveyor_2.rotate_cw(1000)
-        self.conveyor_2.enable()
+        self.conveyor_1.rotate_cw(1000)
+        self.conveyor_1.enable()
         time.sleep(3)   
         print("rotating clockwise take 2")
-        self.conveyor_2.rotate_cw(1000)
-        self.conveyor_2.disable()
+        self.conveyor_1.rotate_cw(1000)
+        self.conveyor_1.disable()
         print("motor sequence disabled")
         
         
