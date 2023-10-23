@@ -6,6 +6,8 @@ from utils.confusion import get_confusion_level
 import time
 from utils.states import State
 from utils.languages import Language, language_dict
+from utils.prediction import Prediction, trash
+from utils.algo import sort_by_type
 
 class JunkJudge:
     def __init__(self, language=Language.EN, lcd=None, conveyor_1=None, conveyor_2=None, camera=None, led_red=None, led_green=None, trapdoor_open=None, trapdoor_close=None) -> None:
@@ -105,9 +107,7 @@ class JunkJudge:
         
         # add motor code here
         
-        print("*motor noises*")
-        print("*motor noises*")
-        print("*motor noises*")
+        self.conveyor_sequence(sort_by_type(trash(prediction)))
         
         time.sleep(1)
         
@@ -137,19 +137,37 @@ class JunkJudge:
         time.sleep(2)
         self.init_sequence()
         
-    def motor_sequence(self):
-        print("rotating counter clockwise")
-        self.conveyor_1.rotate_ccw(1000)
-        print("motor sequence xxx")
-        self.conveyor_1.disable()
-        print("rotating clockwise")
-        self.conveyor_1.rotate_cw(1000)
+    def enable_motors(self):
         self.conveyor_1.enable()
-        time.sleep(3)   
-        print("rotating clockwise take 2")
-        self.conveyor_1.rotate_cw(1000)
+        self.conveyor_2.enable()
+        
+    def disable_motors(self):
         self.conveyor_1.disable()
-        print("motor sequence disabled")
+        self.conveyor_2.disable()
+        
+        
+    def conveyor_sequence(self, pred):
+        # cw = right
+        # ccw = left
+        # change this later
+        if pred == Prediction.TRASH:
+            self.conveyor_1.enable()
+            self.conveyor_1.rotate_ccw(1000) # conv2 <-
+            self.conveyor_1.disable()
+        elif pred == Prediction.RECYCLABLE:
+            self.enable_motors()
+            self.conveyor_1.rotate_cw(1000) # conv1 -> | conv2 ->
+            self.conveyor_2.rotate_cw(1000)
+            self.disable_motors()
+        else:
+            self.enable_motors()
+            self.conveyor_1.rotate_cw(1000) # conv1 -> | conv2 <-
+            self.conveyor_2.rotate_ccw(1000)
+            self.disable_motors()
+            
+        
+    # trash / biological / recyclable
+        
         
         
     # def turn_off(self):

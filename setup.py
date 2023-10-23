@@ -44,7 +44,7 @@ if __name__ == "__main__":
         trapdoor_close = Button(16)
         
         machine = JunkJudge(
-            language=Language.FR,
+            language=Language.EN,
             lcd=lcd_module, 
             conveyor_1=conveyor_module_1, 
             conveyor_2=conveyor_module_2,
@@ -55,10 +55,6 @@ if __name__ == "__main__":
             trapdoor_close=trapdoor_close,
         )
         machine.setup()
-        machine.motor_sequence() # <--- for motor debugging
-        led_green.on()
-        led_red.on()
-        time.sleep(5)
         machine.init_sequence()
         
         atexit.register(machine.clear_all)
