@@ -1,4 +1,4 @@
-from prediction import Prediction, TrashType
+from utils.prediction import Prediction, TrashType
 
 ## SAMPLE OUTPUT ##
 # {
