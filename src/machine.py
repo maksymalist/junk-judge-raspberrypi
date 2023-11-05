@@ -148,7 +148,10 @@ class JunkJudge:
 
     def conveyor_sequence(self, pred):
         
-        self.conveyor_1.rotate_ccw(100)
+        start = time.time()
+        self.conveyor_1.rotate_ccw(1000)
+        end = time.time()
+        print(end - start)
         # cw = right
         # ccw = left
         # change this later
