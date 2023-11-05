@@ -20,12 +20,15 @@ class NMotor:
         GPIO.setup(self.STEP, GPIO.OUT)
         GPIO.setup(self.EN, GPIO.OUT)
         GPIO.output(self.DIR, GPIO.LOW) # LOW = clockwise, HIGH = counter-clockwise
+        print("setting pin cw og")
         GPIO.output(self.EN, GPIO.HIGH) # HIGH = enabled, LOW = disabled
         
     def rotate_cw(self, step_count):
         self.rotation = Rotation.CW
         GPIO.output(self.DIR, GPIO.LOW)
+        print("setting pin cw")
         for x in range(step_count):
+            print(GPIO.input(self.DIR))
             GPIO.output(self.STEP, GPIO.HIGH)
             time.sleep(self.delay)
             GPIO.output(self.STEP, GPIO.LOW)
@@ -34,7 +37,9 @@ class NMotor:
     def rotate_ccw(self, step_count):
         self.rotation = Rotation.CCW
         GPIO.output(self.DIR, GPIO.HIGH)
+        print("setting pin ccw")
         for x in range(step_count):
+            print(GPIO.input(self.DIR))
             GPIO.output(self.STEP, GPIO.HIGH)
             time.sleep(self.delay)
             GPIO.output(self.STEP, GPIO.LOW)
