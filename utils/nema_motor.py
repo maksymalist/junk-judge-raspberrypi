@@ -12,7 +12,7 @@ class NMotor:
         self.DIR = dir # Direction GPIO Pin
         self.EN = en_pin # Enable GPIO Pin
         self.SPR = 200 # Steps per Revolution (360 / 7.5)
-        self.delay = .0013
+        self.delay = .0014
         self.enabled = True
         self.rotation = Rotation.CW
         
