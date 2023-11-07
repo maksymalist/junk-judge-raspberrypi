@@ -152,6 +152,11 @@ class JunkJudge:
         self.conveyor_1.rotate_cw(2500)
         end_time = time.time()
         print(str(end_time - start_time))
+        
+        start_time = time.time()
+        self.conveyor_2.rotate_cw(2500)
+        end_time = time.time()
+        print(str(end_time - start_time))
         # cw = right
         # ccw = left
         # change this later
