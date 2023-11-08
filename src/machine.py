@@ -148,6 +148,8 @@ class JunkJudge:
 
     def conveyor_sequence(self, pred):
         
+        self.enable_motors()
+        
         start_time = time.time()
         self.conveyor_1.rotate_cw(2500)
         end_time = time.time()
@@ -157,6 +159,8 @@ class JunkJudge:
         self.conveyor_2.rotate_cw(2500)
         end_time = time.time()
         print(str(end_time - start_time))
+        
+        self.disable_motors()
         # cw = right
         # ccw = left
         # change this later
