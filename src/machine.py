@@ -153,34 +153,34 @@ class JunkJudge:
         
         self.enable_motors()
         
-        start_time = time.time()
-        self.conveyor_1.rotate_cw(2500)
-        end_time = time.time()
-        print(str(end_time - start_time))
+        # start_time = time.time()
+        # self.conveyor_1.rotate_cw(2500)
+        # end_time = time.time()
+        # print(str(end_time - start_time))
         
-        start_time = time.time()
-        self.conveyor_2.rotate_cw(2500)
-        end_time = time.time()
-        print(str(end_time - start_time))
+        # start_time = time.time()
+        # self.conveyor_2.rotate_cw(2500)
+        # end_time = time.time()
+        # print(str(end_time - start_time))
         
-        self.disable_motors()
+        # self.disable_motors()
         # cw = right
         # ccw = left
         # change this later
-        # if pred == Prediction.TRASH:
-        #     self.conveyor_1.enable()
-        #     self.conveyor_1.rotate_ccw(1000) # conv2 <-
-        #     self.conveyor_1.disable()
-        # elif pred == Prediction.RECYCLABLE:
-        #     self.enable_motors()
-        #     self.conveyor_1.rotate_cw(1000) # conv1 -> | conv2 ->
-        #     self.conveyor_2.rotate_cw(1000)
-        #     self.disable_motors()
-        # else:
-        #     self.enable_motors()
-        #     self.conveyor_1.rotate_cw(1000) # conv1 -> | conv2 <-
-        #     self.conveyor_2.rotate_ccw(1000)
-        #     self.disable_motors()
+        if pred == Prediction.TRASH:
+            self.conveyor_1.enable()
+            self.conveyor_1.rotate_ccw(2500) # conv2 <-
+            self.conveyor_1.disable()
+        elif pred == Prediction.RECYCLABLE:
+            self.enable_motors()
+            self.conveyor_1.rotate_cw(2500) # conv1 -> | conv2 ->
+            self.conveyor_2.rotate_cw(2500)
+            self.disable_motors()
+        else:
+            self.enable_motors()
+            self.conveyor_1.rotate_cw(2500) # conv1 -> | conv2 <-
+            self.conveyor_2.rotate_ccw(2500)
+            self.disable_motors()
 
 
     # trash / biological / recyclable
