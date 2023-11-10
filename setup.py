@@ -39,7 +39,9 @@ if __name__ == "__main__":
         conveyor_module_1 = None # BCM 5, 6, 13 respectively
         conveyor_module_2 = NMotor(35, 37, 36) # BCM 19, 26, 16 respectively
         conveyor_module_2.enable()
-        conveyor_module_2.rotate_ccw(1000)
+        conveyor_module_2.rotate_ccw(2000)
+        
+        return
         # step, dir, en
         print("made it pas the motors")
         
