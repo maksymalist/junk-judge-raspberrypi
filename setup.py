@@ -41,7 +41,8 @@ if __name__ == "__main__":
         conveyor_module_2.enable()
         conveyor_module_2.rotate_ccw(2000)
         
-        return
+        while True:
+            pass
         # step, dir, en
         print("made it pas the motors")
         
