@@ -44,6 +44,9 @@ if __name__ == "__main__":
         led_red = LED(38)
         led_green = LED(40)
         
+        led_green.on()
+        led_red.on()
+        
         print("leds are good")
         
         trapdoor_open  = Button(12)
