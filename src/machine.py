@@ -38,6 +38,7 @@ class JunkJudge:
         #setup lcd and leds
         self.clear_all()
         self.lcd.setup_custom_characters()
+        self.disable_motors()
 
 
     def init_sequence(self):
