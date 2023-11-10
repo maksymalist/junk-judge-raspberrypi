@@ -67,9 +67,6 @@ if __name__ == "__main__":
         machine.setup()
         ##machine.init_sequence()
         
-        conveyor_module_1.enable()
-        conveyor_module_1.rotate_ccw(1000)
-        
         led_green.on()
         led_red.on()
         
