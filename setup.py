@@ -31,7 +31,7 @@ if __name__ == "__main__":
         print("no lcd")
         
         camera = PiCamera()
-        screen = drivers.Lcd()
+        screen = None #drivers.Lcd()
         
         print("camera and lcd initialized")
         camera_module = CameraModule(camera, (500, 500), 50)
