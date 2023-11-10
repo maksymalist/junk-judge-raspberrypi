@@ -43,7 +43,6 @@ class JunkJudge:
     def init_sequence(self):
         print("INIT sequence \n")
         self.clear_all()
-        self.disable_motors()
         self.state = State.INIT
 
         self.lcd.display(self.translations["init"])
