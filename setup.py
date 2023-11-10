@@ -40,8 +40,8 @@ if __name__ == "__main__":
         led_red = LED(38)
         led_green = LED(40)
         
-        trapdoor_open  = Button(12)
-        trapdoor_close = Button(16)
+        trapdoor_open  = None #Button(12)
+        trapdoor_close = None #Button(16)
         
         machine = JunkJudge(
             language=Language.EN,
