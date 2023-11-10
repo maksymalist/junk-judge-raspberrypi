@@ -38,6 +38,8 @@ if __name__ == "__main__":
         lcd_module = LcdModule(screen)  
         conveyor_module_1 = NMotor(29, 31, 33) # BCM 5, 6, 13 respectively
         conveyor_module_2 = NMotor(35, 37, 36) # BCM 19, 26, 16 respectively
+        conveyor_module_1.enable()
+        conveyor_module_1.rotate_ccw(1000)
         # step, dir, en
         print("made it pas the motors")
         
