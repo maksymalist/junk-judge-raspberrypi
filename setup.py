@@ -28,6 +28,8 @@ if __name__ == "__main__":
             'storageBucket': 'junk-judge.appspot.com'
         })
         
+        print("no lcd")
+        
         camera = PiCamera()
         screen = drivers.Lcd()
         
