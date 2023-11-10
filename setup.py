@@ -44,6 +44,8 @@ if __name__ == "__main__":
         led_red = LED(38)
         led_green = LED(40)
         
+        conveyor_module_1.rotate_ccw(100)
+        
         led_green.on()
         led_red.on()
         
