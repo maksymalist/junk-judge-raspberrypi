@@ -65,10 +65,10 @@ if __name__ == "__main__":
             trapdoor_close=trapdoor_close,
         )
         machine.setup()
-        ##machine.init_sequence()
+        machine.init_sequence()
         
-        led_green.on()
-        led_red.on()
+        # led_green.on()
+        # led_red.on()
         
         atexit.register(machine.clear_all)
         # atexit.register(machine.turn_off)
