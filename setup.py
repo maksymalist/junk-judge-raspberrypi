@@ -41,11 +41,6 @@ if __name__ == "__main__":
         conveyor_module_2.enable()
         conveyor_module_2.rotate_ccw(2000)
         
-        while True:
-            pass
-        # step, dir, en
-        print("made it pas the motors")
-        
         led_red = LED(38)
         led_green = LED(40)
         
@@ -68,6 +63,8 @@ if __name__ == "__main__":
             trapdoor_close=trapdoor_close,
         )
         machine.setup()
+        machine.led_green.on()
+        machine.led_red.on()
         machine.init_sequence()
         
         # led_green.on()
