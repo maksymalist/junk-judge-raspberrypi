@@ -153,7 +153,7 @@ class JunkJudge:
         
         #self.enable_motors()
         print("it should be moving now")
-        self.conveyor_2.rotate_ccw(2500)
+        self.conveyor_1.rotate_ccw(2500)
         
         # start_time = time.time()
         # self.conveyor_1.rotate_cw(2500)
