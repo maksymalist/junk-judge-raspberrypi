@@ -38,7 +38,7 @@ class JunkJudge:
         #setup lcd and leds
         self.clear_all()
         self.lcd.setup_custom_characters()
-        self.disable_motors()
+        #self.disable_motors()
 
 
     def init_sequence(self):
@@ -151,7 +151,9 @@ class JunkJudge:
 
     def conveyor_sequence(self, pred):
         
-        self.enable_motors()
+        #self.enable_motors()
+        print("it should be moving now")
+        self.conveyor_1.rotate_cw(2500)
         self.conveyor_2.rotate_ccw(2500)
         
         # start_time = time.time()
