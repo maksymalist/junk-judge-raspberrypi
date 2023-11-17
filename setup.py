@@ -36,8 +36,8 @@ if __name__ == "__main__":
         print("camera and lcd initialized")
         camera_module = CameraModule(camera, (500, 500), 50)
         lcd_module = LcdModule(screen)  
-        conveyor_module_1 = NMotor(13, 11, 7) # BCM 5, 6, 13 respectively
-        conveyor_module_2 = None #NMotor(13, 11, 36) # BCM 19, 26, 16 respectively
+        conveyor_module_1 = NMotor(29, 31, 7) # BCM 5, 6, 13 respectively
+        conveyor_module_2 = NMotor(35, 37, 36) # BCM 19, 26, 16 respectively
         
         led_red = LED(38)
         led_green = LED(40)
