@@ -28,12 +28,9 @@ if __name__ == "__main__":
             'storageBucket': 'junk-judge.appspot.com'
         })
         
-        print("no lcd")
-        
         camera = PiCamera()
         screen = drivers.Lcd()
         
-        print("camera and lcd initialized")
         camera_module = CameraModule(camera, (500, 500), 50)
         lcd_module = LcdModule(screen)  
         conveyor_module_1 = NMotor(29, 31, 33) # BCM 5, 6, 13 respectively
@@ -42,12 +39,8 @@ if __name__ == "__main__":
         led_red = LED(38)
         led_green = LED(40)
         
-        print("leds are good")
-        
         trapdoor_open  = Button(12)
         trapdoor_close = Button(16)
-        
-        print("trapdoor works")
         
         machine = JunkJudge(
             language=Language.EN,
