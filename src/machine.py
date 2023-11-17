@@ -151,9 +151,7 @@ class JunkJudge:
 
     def conveyor_sequence(self, pred):
         
-        #self.enable_motors()
-        print("it should be moving now")
-        self.conveyor_1.rotate_ccw(2500)
+        self.enable_motors()
         
         # start_time = time.time()
         # self.conveyor_1.rotate_cw(2500)
@@ -165,24 +163,27 @@ class JunkJudge:
         # end_time = time.time()
         # print(str(end_time - start_time))
         
-        # self.disable_motors()
+        self.disable_motors()
         # cw = right
         # ccw = left
         # change this later
-        # if pred == Prediction.TRASH:
-        #     self.conveyor_1.enable()
-        #     self.conveyor_1.rotate_ccw(2500) # conv2 <-
-        #     self.conveyor_1.disable()
-        # elif pred == Prediction.RECYCLABLE:
-        #     self.enable_motors()
-        #     self.conveyor_1.rotate_cw(2500) # conv1 -> | conv2 ->
-        #     self.conveyor_2.rotate_cw(2500)
-        #     self.disable_motors()
-        # else:
-        #     self.enable_motors()
-        #     self.conveyor_1.rotate_cw(2500) # conv1 -> | conv2 <-
-        #     self.conveyor_2.rotate_ccw(2500)
-        #     self.disable_motors()
+        if pred == Prediction.TRASH:
+            print("predicted trash")
+            self.conveyor_1.enable()
+            self.conveyor_1.rotate_ccw(2500) # conv2 <-
+            self.conveyor_1.disable()
+        elif pred == Prediction.RECYCLABLE:
+            print("predicted recyclable")
+            self.enable_motors()
+            self.conveyor_1.rotate_cw(2500) # conv1 -> | conv2 ->
+            self.conveyor_2.rotate_cw(2500)
+            self.disable_motors()
+        else:
+            print("predicted compost")
+            self.enable_motors()
+            self.conveyor_1.rotate_cw(2500) # conv1 -> | conv2 <-
+            self.conveyor_2.rotate_ccw(2500)
+            self.disable_motors()
 
 
     # trash / biological / recyclable
