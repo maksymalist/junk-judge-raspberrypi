@@ -12,7 +12,7 @@ from utils.algo import sort_by_type
 class JunkJudge:
     def __init__(self, language=Language.EN, lcd=None, conveyor_1=None, conveyor_2=None, camera=None, led_red=None, led_green=None, trapdoor_open=None, trapdoor_close=None) -> None:
         self.version = "Beta v1.0"
-        self.override = False
+        self.override = True
         self.language = language
         self.translations = language_dict[self.language.value]
         self.judge_id = 1
@@ -93,8 +93,11 @@ class JunkJudge:
         self.lcd.display_progress(25, self.translations["active"]["prediction"])
         print("Predicting type...")
 
-        data = predict_type(file_path)
-        prediction = data['result'][0]['result']
+        data = None
+        if not self.override:
+            data = predict_type(file_path)
+            
+        prediction = "paper" if self.override else data['result'][0]['result']
 
         #TODO: create a function to get the confusion level from the data
         confusion = get_confusion_level(data)
