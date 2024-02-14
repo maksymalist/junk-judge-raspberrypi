@@ -93,14 +93,17 @@ class JunkJudge:
         self.lcd.display_progress(25, self.translations["active"]["prediction"])
         print("Predicting type...")
 
+        # "paper" if self.override else data['result'][0]['result']
         data = None
+        prediction = "paper"
         if not self.override:
             data = predict_type(file_path)
+            prediction = data['result'][0]['result']
             
-        prediction = "paper" if self.override else data['result'][0]['result']
+
 
         #TODO: create a function to get the confusion level from the data
-        confusion = get_confusion_level(data)
+        #confusion = get_confusion_level(data)
 
         ## upload to firebase ##
         self.lcd.display_progress(50, self.translations["active"]["save"])
@@ -113,7 +116,7 @@ class JunkJudge:
         # add motor code here
 
         # for demo purposes only
-        self.conveyor_sequence(sort_by_type(trash("paper" if self.override else prediction)))
+        self.conveyor_sequence(sort_by_type(trash(prediction)))
 
         time.sleep(1)
 
