@@ -9,3 +9,4 @@ cryptography==2.8
 RPi.GPIO
 numpy
 rpimotorlib
+inquirer

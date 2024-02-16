@@ -40,6 +40,16 @@ from utils.prediction import Prediction, TrashType
 #   "embedding_confidence": 0.5217162370681763
 # }
 
+def text_to_prediction(text):
+    if text == "trash":
+        return Prediction.TRASH
+    elif text == "biological":
+        return Prediction.BIOLOGICAL
+    elif text == "recyclable":
+        return Prediction.RECYCLABLE
+    else:
+        raise Exception("not a valid trash type")
+
 def sort_by_type(pred):
     if pred == TrashType.TRASH:
         return Prediction.TRASH

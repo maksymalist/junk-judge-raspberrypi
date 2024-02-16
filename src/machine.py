@@ -7,12 +7,16 @@ import time
 from utils.states import State
 from utils.languages import Language, language_dict
 from utils.prediction import Prediction, trash
-from utils.algo import sort_by_type
+from utils.algo import sort_by_type, text_to_prediction
+
+import inquirer
+
 
 class JunkJudge:
     def __init__(self, language=Language.EN, lcd=None, conveyor_1=None, conveyor_2=None, camera=None, led_red=None, led_green=None, trapdoor_open=None, trapdoor_close=None) -> None:
         self.version = "Beta v1.0"
         self.override = True
+        self.secret_mode = False
         self.language = language
         self.translations = language_dict[self.language.value]
         self.judge_id = 1
@@ -116,7 +120,22 @@ class JunkJudge:
         # add motor code here
 
         # for demo purposes only
-        self.conveyor_sequence(sort_by_type(trash(prediction)))
+        
+        classification = sort_by_type(trash(prediction))
+        
+        if self.secret_mode:
+            questions = [
+                inquirer.List(
+                    "type",
+                    message="What type?",
+                    choices=["trash", "recyclable", "biological"],
+                ),
+            ]
+
+            answers = inquirer.prompt(questions)
+            classification = sort_by_type(text_to_prediction(answers["type"]))
+        
+        self.conveyor_sequence(classification)
 
         time.sleep(1)
 
