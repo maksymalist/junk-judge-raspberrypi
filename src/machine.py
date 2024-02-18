@@ -89,6 +89,7 @@ class JunkJudge:
 
         ## take picture ##
         self.lcd.display_progress(0, self.translations["active"]["scan"])
+        time.sleep(1)
         self.camera.take_picture(file_path)
 
         ## predict type ##
