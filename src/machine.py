@@ -101,9 +101,8 @@ class JunkJudge:
         prediction = "paper"
         if not self.override:
             data = predict_type(file_path)
+            print(data)
             prediction = data['result'][0]['result']
-            
-
 
         #TODO: create a function to get the confusion level from the data
         #confusion = get_confusion_level(data)
@@ -121,6 +120,31 @@ class JunkJudge:
         # for demo purposes only
         
         classification = sort_by_type(trash(prediction))
+        
+        if self.secret_mode:
+            
+            print("""
+
+            | 1: Trash      |
+            
+            | 2: Recycalble | 
+            
+            | 3: Compost    | 
+            
+            \n
+            
+            """)
+            
+            c = input("Enter classification: ")
+            
+            if c == "1":
+                classification = Prediction.TRASH
+            elif c == "2":
+                classification = Prediction.RECYCLABLE
+            elif c == "3":
+                classification = Prediction.BIOLOGICAL
+            else:
+                classification = Prediction.TRASH
         
         self.conveyor_sequence(classification)
 
