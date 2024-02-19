@@ -125,11 +125,13 @@ class JunkJudge:
             
             print("""
 
-            | 1: Trash      |
+            | 1: Trash        |
             
-            | 2: Recycalble | 
+            | 2: Recycalble   | 
             
-            | 3: Compost    | 
+            | 3: Compost      | 
+            
+            | SPACE: SKIP     |
             
             \n
             
@@ -144,7 +146,7 @@ class JunkJudge:
             elif c == "3":
                 classification = Prediction.BIOLOGICAL
             else:
-                classification = Prediction.TRASH
+                pass
         
         self.conveyor_sequence(classification)
 
