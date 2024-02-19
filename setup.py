@@ -43,7 +43,7 @@ if __name__ == "__main__":
         trapdoor_close = Button(16)
         
         machine = JunkJudge(
-            language=Language.EN,
+            language=Language.FR,
             lcd=lcd_module, 
             conveyor_1=conveyor_module_1, 
             conveyor_2=conveyor_module_2,
