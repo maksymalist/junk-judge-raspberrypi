@@ -121,6 +121,8 @@ class JunkJudge:
         
         classification = sort_by_type(trash(prediction))
         
+        print("Classification: ", classification)
+        
         if self.secret_mode:
             
             print("""
