@@ -8,6 +8,7 @@ from utils.states import State
 from utils.languages import Language, language_dict
 from utils.prediction import Prediction, trash
 from utils.algo import sort_by_type, text_to_prediction
+from utils.mcgiver import query, labels_1
 
 
 class JunkJudge:
@@ -100,9 +101,24 @@ class JunkJudge:
         data = None
         prediction = "paper"
         if not self.override:
-            data = predict_type(file_path)
-            print(data)
-            prediction = data['result'][0]['result']
+            #data = predict_type(file_path)
+            
+            data = query({
+                "image_path": file_path,
+                "parameters": {"candidate_labels": labels_1 },
+            })
+            
+            best = (0, "")
+            for pred in data:
+                score = pred["score"]
+                label = pred["label"]
+                
+                if score > best[0]:
+                    best = (score, label)
+                    
+            prediction = best[1]
+                
+            #prediction = data['result'][0]['result']
 
         #TODO: create a function to get the confusion level from the data
         #confusion = get_confusion_level(data)
