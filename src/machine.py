@@ -101,24 +101,24 @@ class JunkJudge:
         data = None
         prediction = "paper"
         if not self.override:
-            #data = predict_type(file_path)
+            data = predict_type(file_path)
             
-            data = query({
-                "image_path": file_path,
-                "parameters": {"candidate_labels": labels_1 },
-            })
+            # data = query({
+            #     "image_path": file_path,
+            #     "parameters": {"candidate_labels": labels_1 },
+            # })
             
-            best = (0, "")
-            for pred in data:
-                score = pred["score"]
-                label = pred["label"]
+            # best = (0, "")
+            # for pred in data:
+            #     score = pred["score"]
+            #     label = pred["label"]
                 
-                if score > best[0]:
-                    best = (score, label)
+            #     if score > best[0]:
+            #         best = (score, label)
                     
-            prediction = best[1]
+            # prediction = best[1]
                 
-            #prediction = data['result'][0]['result']
+            prediction = data['result'][0]['result']
 
         #TODO: create a function to get the confusion level from the data
         #confusion = get_confusion_level(data)
